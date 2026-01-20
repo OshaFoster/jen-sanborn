@@ -79,18 +79,25 @@ export default function Home() {
         </h1>
 
         <nav className="flex flex-col gap-4">
-          {menuItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleMenuClick(item.id);
-              }}
-              className="text-sm tracking-widest uppercase hover:text-neutral-500 transition-colors text-left"
-            >
-              {item.label}
-            </button>
-          ))}
+          {menuItems.map((item) => {
+            const isActive =
+              (item.id === "portfolio" && !modalOpen) ||
+              (modalOpen && modalContent === item.id);
+            return (
+              <button
+                key={item.id}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleMenuClick(item.id);
+                }}
+                className={`text-sm tracking-widest uppercase hover:text-neutral-500 transition-colors text-left pb-1 w-fit ${
+                  isActive ? "border-b border-neutral-300" : ""
+                }`}
+              >
+                {item.label}
+              </button>
+            );
+          })}
         </nav>
         {/* Dimming overlay - on top of everything except line */}
         <div
@@ -135,9 +142,9 @@ export default function Home() {
                   setModalOpen(true);
                 }}
                 style={{ aspectRatio: painting.aspectRatio }}
-                className="w-full bg-neutral-100 cursor-pointer relative group"
+                className="w-full bg-neutral-100 cursor-pointer relative group rounded overflow-hidden"
               >
-                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-opacity duration-200" />
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                   <span className="text-xs tracking-wide text-white">{painting.title}</span>
                 </div>
