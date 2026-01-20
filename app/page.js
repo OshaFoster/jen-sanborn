@@ -157,8 +157,8 @@ export default function Home() {
 
       {/* Modal Overlay */}
       <div
-        className={`absolute top-0 right-0 w-3/4 h-full bg-white transform transition-all duration-300 ease-out z-20 ${
-          modalOpen ? "translate-x-0 opacity-100 shadow-[-6px_0_50px_rgba(0,0,0,0.15)]" : "translate-x-full opacity-0"
+        className={`absolute top-0 right-0 w-3/4 h-full bg-white transform transition-all duration-300 ease-out z-20 rounded-l-lg ${
+          modalOpen ? "translate-x-0 opacity-100 shadow-[-10px_0_60px_rgba(0,0,0,0.2)]" : "translate-x-full opacity-0"
         }`}
       >
         {/* Line drawing - modal portion (spiral continues) */}
@@ -201,11 +201,45 @@ export default function Home() {
             </div>
           )}
           {modalContent?.type === "painting" && (
-            <div className="flex items-center justify-center h-full">
-              <div
-                style={{ aspectRatio: modalContent.painting.aspectRatio }}
-                className="max-h-[80vh] max-w-full bg-neutral-100 border border-neutral-200"
-              />
+            <div className="flex items-center justify-center h-full relative">
+              {/* Previous arrow */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const currentIndex = paintings.findIndex(p => p.id === modalContent.painting.id);
+                  const prevIndex = currentIndex === 0 ? paintings.length - 1 : currentIndex - 1;
+                  setModalContent({ type: "painting", painting: paintings[prevIndex] });
+                }}
+                className="absolute left-4 p-2 text-neutral-400 hover:text-neutral-600 transition-colors"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+
+              {/* Painting */}
+              <div className="flex flex-col items-center gap-4">
+                <div
+                  style={{ aspectRatio: modalContent.painting.aspectRatio }}
+                  className="max-h-[70vh] max-w-full bg-neutral-100 rounded"
+                />
+                <span className="text-sm text-neutral-500">{modalContent.painting.title}</span>
+              </div>
+
+              {/* Next arrow */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const currentIndex = paintings.findIndex(p => p.id === modalContent.painting.id);
+                  const nextIndex = currentIndex === paintings.length - 1 ? 0 : currentIndex + 1;
+                  setModalContent({ type: "painting", painting: paintings[nextIndex] });
+                }}
+                className="absolute right-4 p-2 text-neutral-400 hover:text-neutral-600 transition-colors"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
             </div>
           )}
         </div>
