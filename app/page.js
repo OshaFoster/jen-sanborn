@@ -15,7 +15,7 @@ export default function Home() {
 
   // Placeholder paintings with varied aspect ratios
   const paintings = [
-    { id: 1, aspectRatio: "3/4", title: "Painting 1" },
+    { id: 1, aspectRatio: "5/4", title: "Painting 1", image: "/assets/image1.jpg" },
     { id: 2, aspectRatio: "4/3", title: "Painting 2" },
     { id: 3, aspectRatio: "1/1", title: "Painting 3" },
     { id: 4, aspectRatio: "3/5", title: "Painting 4" },
@@ -78,9 +78,12 @@ export default function Home() {
             strokeWidth="0.5"
           />
         </svg>
-        <h1 className="font-[family-name:var(--font-megrim)] text-6xl tracking-wide mb-12">
+        <h1 className="font-[family-name:var(--font-megrim)] text-6xl tracking-wide mb-2">
           Jen Sanborn
         </h1>
+        <span className="text-sm tracking-[0.4em] uppercase text-[#c0c0c0] mb-12 block">
+          Artist
+        </span>
 
         <nav className="flex flex-col gap-4">
           {menuItems.map((item) => {
@@ -103,6 +106,40 @@ export default function Home() {
             );
           })}
         </nav>
+
+        {/* Shop button */}
+        <a
+          href="https://www.etsy.com/shop/YOURSHOP"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 px-4 py-2 text-sm tracking-widest uppercase border border-neutral-300 hover:border-neutral-400 hover:bg-neutral-50 transition-all w-fit"
+        >
+          Shop
+        </a>
+
+        {/* Social icons */}
+        <div className="mt-4 flex gap-3">
+          <a
+            href="https://www.instagram.com/jensanborn_artist"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-neutral-400 hover:text-neutral-600 transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="18" cy="6" r="1" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
+        </div>
+
+        {/* Bird illustration */}
+        <img
+          src="/assets/bird.png"
+          alt=""
+          className="absolute bottom-[44px] left-8 w-24 opacity-80 z-40"
+        />
+
         {/* Dimming overlay - on top of everything except line */}
         <div
           className={`absolute inset-0 bg-black pointer-events-none transition-opacity duration-200 ease-out z-20 ${
@@ -149,6 +186,13 @@ export default function Home() {
                 style={{ aspectRatio: painting.aspectRatio }}
                 className="w-full bg-neutral-100 cursor-pointer relative group rounded overflow-hidden"
               >
+                {painting.image && (
+                  <img
+                    src={painting.image}
+                    alt={painting.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                )}
                 <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                   <span className="text-xs tracking-wide text-white">{painting.title}</span>
@@ -228,8 +272,16 @@ export default function Home() {
                 <span className="font-[family-name:var(--font-megrim)] text-2xl text-neutral-700">{modalContent.painting.title}</span>
                 <div
                   style={{ aspectRatio: modalContent.painting.aspectRatio }}
-                  className="bg-neutral-100 border border-neutral-200 rounded h-[70vh]"
-                />
+                  className="bg-neutral-100 border border-neutral-200 rounded h-[70vh] overflow-hidden"
+                >
+                  {modalContent.painting.image && (
+                    <img
+                      src={modalContent.painting.image}
+                      alt={modalContent.painting.title}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                </div>
               </div>
 
               {/* Next arrow */}
