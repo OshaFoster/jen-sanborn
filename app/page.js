@@ -74,8 +74,8 @@ export default function Home() {
                Q 10 55, 20 45
                Q 25 40, 25 40"
             fill="none"
-            stroke="#c5c5c5"
-            strokeWidth="0.3"
+            stroke="#f0f0f0"
+            strokeWidth="0.5"
           />
         </svg>
         <h1 className="font-[family-name:var(--font-megrim)] text-6xl tracking-wide mb-12">
@@ -106,7 +106,7 @@ export default function Home() {
         {/* Dimming overlay - on top of everything except line */}
         <div
           className={`absolute inset-0 bg-black pointer-events-none transition-opacity duration-200 ease-out z-20 ${
-            modalOpen ? "opacity-50" : "opacity-0"
+            modalOpen ? "opacity-35" : "opacity-0"
           }`}
           style={{ transitionDelay: modalOpen ? "250ms" : "0ms" }}
         />
@@ -130,8 +130,8 @@ export default function Home() {
                Q 40 30, 55 15
                Q 70 0, 75 10"
             fill="none"
-            stroke="#c5c5c5"
-            strokeWidth="0.3"
+            stroke="#f0f0f0"
+            strokeWidth="0.5"
           />
         </svg>
         <div className="h-full overflow-y-auto p-16">
@@ -162,7 +162,7 @@ export default function Home() {
 
       {/* Modal Overlay */}
       <div
-        className={`absolute top-0 right-0 w-3/4 h-full bg-white transform transition-all duration-300 ease-in-out z-20 rounded-l-lg overflow-hidden will-change-transform ${
+        className={`absolute top-0 right-0 w-3/4 h-full bg-[#fafafa] transform transition-all duration-300 ease-in-out z-20 rounded-l-lg overflow-hidden will-change-transform ${
           modalOpen ? "translate-x-0 opacity-100 shadow-[-10px_0_60px_rgba(0,0,0,0.2)]" : "translate-x-full opacity-0 shadow-none"
         }`}
       >
@@ -182,8 +182,8 @@ export default function Home() {
                Q 40 30, 55 15
                Q 70 0, 75 10"
             fill="none"
-            stroke="#c5c5c5"
-            strokeWidth="0.3"
+            stroke="#f0f0f0"
+            strokeWidth="0.5"
           />
         </svg>
         {/* Modal content */}
