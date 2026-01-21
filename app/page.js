@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import paintings from "@/data/paintings.json";
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -11,34 +12,6 @@ export default function Home() {
     { label: "About", id: "about" },
     { label: "Writings", id: "writings" },
     { label: "Connect", id: "connect" },
-  ];
-
-  // Placeholder paintings with varied aspect ratios
-  const paintings = [
-    { id: 1, aspectRatio: "5/4", title: "Painting 1", image: "/assets/image1.jpg" },
-    { id: 2, aspectRatio: "4/3", title: "Painting 2" },
-    { id: 3, aspectRatio: "1/1", title: "Painting 3" },
-    { id: 4, aspectRatio: "3/5", title: "Painting 4" },
-    { id: 5, aspectRatio: "4/3", title: "Painting 5" },
-    { id: 6, aspectRatio: "3/4", title: "Painting 6" },
-    { id: 7, aspectRatio: "5/4", title: "Painting 7" },
-    { id: 8, aspectRatio: "3/4", title: "Painting 8" },
-    { id: 9, aspectRatio: "1/1", title: "Painting 9" },
-    { id: 10, aspectRatio: "4/5", title: "Painting 10" },
-    { id: 11, aspectRatio: "3/4", title: "Painting 11" },
-    { id: 12, aspectRatio: "5/3", title: "Painting 12" },
-    { id: 13, aspectRatio: "3/4", title: "Painting 13" },
-    { id: 14, aspectRatio: "1/1", title: "Painting 14" },
-    { id: 15, aspectRatio: "4/5", title: "Painting 15" },
-    { id: 16, aspectRatio: "3/4", title: "Painting 16" },
-    { id: 17, aspectRatio: "5/4", title: "Painting 17" },
-    { id: 18, aspectRatio: "4/3", title: "Painting 18" },
-    { id: 19, aspectRatio: "3/4", title: "Painting 19" },
-    { id: 20, aspectRatio: "1/1", title: "Painting 20" },
-    { id: 21, aspectRatio: "4/5", title: "Painting 21" },
-    { id: 22, aspectRatio: "5/4", title: "Painting 22" },
-    { id: 23, aspectRatio: "3/4", title: "Painting 23" },
-    { id: 24, aspectRatio: "4/3", title: "Painting 24" },
   ];
 
   const handleMenuClick = (id) => {
@@ -272,7 +245,7 @@ export default function Home() {
                 <span className="font-[family-name:var(--font-megrim)] text-2xl text-neutral-700">{modalContent.painting.title}</span>
                 <div
                   style={{ aspectRatio: modalContent.painting.aspectRatio }}
-                  className="bg-neutral-100 border border-neutral-200 rounded h-[70vh] overflow-hidden"
+                  className="bg-neutral-100 border border-neutral-200 rounded h-[60vh] overflow-hidden"
                 >
                   {modalContent.painting.image && (
                     <img
