@@ -69,10 +69,12 @@ export default function Home() {
           preserveAspectRatio="none"
         >
           <path
-            d="M 5 95
-               Q 20 85, 15 70
-               Q 10 55, 20 45
-               Q 25 40, 25 40"
+            d="M 12 90
+               Q 8 85, 10 78
+               Q 14 70, 8 65
+               Q 2 60, 6 52
+               Q 12 42, 20 48
+               Q 25 52, 25 52"
             fill="none"
             stroke="#c5c5c5"
             strokeWidth="0.3"
@@ -106,7 +108,7 @@ export default function Home() {
         {/* Dimming overlay - on top of everything except line */}
         <div
           className={`absolute inset-0 bg-black pointer-events-none transition-opacity duration-200 ease-out z-20 ${
-            modalOpen ? "opacity-50" : "opacity-0"
+            modalOpen ? "opacity-40" : "opacity-0"
           }`}
           style={{ transitionDelay: modalOpen ? "250ms" : "0ms" }}
         />
@@ -121,14 +123,13 @@ export default function Home() {
           preserveAspectRatio="none"
         >
           <path
-            d="M 0 40
-               Q 15 30, 30 40
-               Q 50 55, 40 75
-               Q 30 90, 50 95
-               Q 70 100, 75 80
-               Q 80 60, 60 45
-               Q 40 30, 55 15
-               Q 70 0, 75 10"
+            d="M 0 52
+               Q 8 58, 15 50
+               Q 25 38, 40 45
+               Q 55 52, 50 68
+               Q 45 85, 60 90
+               Q 75 95, 70 75
+               Q 65 55, 75 40"
             fill="none"
             stroke="#c5c5c5"
             strokeWidth="0.3"
@@ -162,8 +163,8 @@ export default function Home() {
 
       {/* Modal Overlay */}
       <div
-        className={`absolute top-0 right-0 w-3/4 h-full bg-white transform transition-all duration-300 ease-in-out z-20 rounded-l-lg overflow-hidden will-change-transform ${
-          modalOpen ? "translate-x-0 opacity-100 shadow-[-10px_0_60px_rgba(0,0,0,0.2)]" : "translate-x-full opacity-0 shadow-none"
+        className={`absolute top-0 right-0 w-3/4 h-full bg-white transform transition-all duration-300 ease-out z-20 rounded-l-lg ${
+          modalOpen ? "translate-x-0 opacity-100 shadow-[-10px_0_60px_rgba(0,0,0,0.2)]" : "translate-x-full opacity-0"
         }`}
       >
         {/* Line drawing - modal portion (spiral continues) */}
@@ -173,14 +174,13 @@ export default function Home() {
           preserveAspectRatio="none"
         >
           <path
-            d="M 0 40
-               Q 15 30, 30 40
-               Q 50 55, 40 75
-               Q 30 90, 50 95
-               Q 70 100, 75 80
-               Q 80 60, 60 45
-               Q 40 30, 55 15
-               Q 70 0, 75 10"
+            d="M 0 52
+               Q 8 58, 15 50
+               Q 25 38, 40 45
+               Q 55 52, 50 68
+               Q 45 85, 60 90
+               Q 75 95, 70 75
+               Q 65 55, 75 40"
             fill="none"
             stroke="#c5c5c5"
             strokeWidth="0.3"
@@ -216,7 +216,7 @@ export default function Home() {
                   const prevIndex = currentIndex === 0 ? paintings.length - 1 : currentIndex - 1;
                   setModalContent({ type: "painting", painting: paintings[prevIndex] });
                 }}
-                className="absolute left-4 p-2 text-neutral-600 hover:text-neutral-800 transition-colors"
+                className="absolute left-4 p-2 text-neutral-400 hover:text-neutral-600 transition-colors"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M15 18l-6-6 6-6" />
@@ -225,11 +225,11 @@ export default function Home() {
 
               {/* Painting */}
               <div className="flex flex-col items-center gap-4 h-full justify-center">
-                <span className="font-[family-name:var(--font-megrim)] text-2xl text-neutral-700">{modalContent.painting.title}</span>
                 <div
                   style={{ aspectRatio: modalContent.painting.aspectRatio }}
                   className="bg-neutral-100 border border-neutral-200 rounded h-[70vh]"
                 />
+                <span className="font-[family-name:var(--font-megrim)] text-2xl text-neutral-500">{modalContent.painting.title}</span>
               </div>
 
               {/* Next arrow */}
@@ -240,7 +240,7 @@ export default function Home() {
                   const nextIndex = currentIndex === paintings.length - 1 ? 0 : currentIndex + 1;
                   setModalContent({ type: "painting", painting: paintings[nextIndex] });
                 }}
-                className="absolute right-4 p-2 text-neutral-600 hover:text-neutral-800 transition-colors"
+                className="absolute right-4 p-2 text-neutral-400 hover:text-neutral-600 transition-colors"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M9 18l6-6-6-6" />

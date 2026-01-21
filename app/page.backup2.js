@@ -106,7 +106,7 @@ export default function Home() {
         {/* Dimming overlay - on top of everything except line */}
         <div
           className={`absolute inset-0 bg-black pointer-events-none transition-opacity duration-200 ease-out z-20 ${
-            modalOpen ? "opacity-50" : "opacity-0"
+            modalOpen ? "opacity-40" : "opacity-0"
           }`}
           style={{ transitionDelay: modalOpen ? "250ms" : "0ms" }}
         />
@@ -162,8 +162,8 @@ export default function Home() {
 
       {/* Modal Overlay */}
       <div
-        className={`absolute top-0 right-0 w-3/4 h-full bg-white transform transition-all duration-300 ease-in-out z-20 rounded-l-lg overflow-hidden will-change-transform ${
-          modalOpen ? "translate-x-0 opacity-100 shadow-[-10px_0_60px_rgba(0,0,0,0.2)]" : "translate-x-full opacity-0 shadow-none"
+        className={`absolute top-0 right-0 w-3/4 h-full bg-white transform transition-all duration-300 ease-out z-20 rounded-l-lg ${
+          modalOpen ? "translate-x-0 opacity-100 shadow-[-10px_0_60px_rgba(0,0,0,0.2)]" : "translate-x-full opacity-0"
         }`}
       >
         {/* Line drawing - modal portion (spiral continues) */}
@@ -216,7 +216,7 @@ export default function Home() {
                   const prevIndex = currentIndex === 0 ? paintings.length - 1 : currentIndex - 1;
                   setModalContent({ type: "painting", painting: paintings[prevIndex] });
                 }}
-                className="absolute left-4 p-2 text-neutral-600 hover:text-neutral-800 transition-colors"
+                className="absolute left-4 p-2 text-neutral-400 hover:text-neutral-600 transition-colors"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M15 18l-6-6 6-6" />
@@ -225,11 +225,11 @@ export default function Home() {
 
               {/* Painting */}
               <div className="flex flex-col items-center gap-4 h-full justify-center">
-                <span className="font-[family-name:var(--font-megrim)] text-2xl text-neutral-700">{modalContent.painting.title}</span>
                 <div
                   style={{ aspectRatio: modalContent.painting.aspectRatio }}
                   className="bg-neutral-100 border border-neutral-200 rounded h-[70vh]"
                 />
+                <span className="font-[family-name:var(--font-megrim)] text-2xl text-neutral-500">{modalContent.painting.title}</span>
               </div>
 
               {/* Next arrow */}
@@ -240,7 +240,7 @@ export default function Home() {
                   const nextIndex = currentIndex === paintings.length - 1 ? 0 : currentIndex + 1;
                   setModalContent({ type: "painting", painting: paintings[nextIndex] });
                 }}
-                className="absolute right-4 p-2 text-neutral-600 hover:text-neutral-800 transition-colors"
+                className="absolute right-4 p-2 text-neutral-400 hover:text-neutral-600 transition-colors"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M9 18l6-6-6-6" />
