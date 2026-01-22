@@ -57,7 +57,7 @@ export default function Home() {
           Artist
         </span>
 
-        <nav className="flex flex-col gap-4">
+        <nav className="flex flex-col gap-6">
           {menuItems.map((item) => {
             const isActive =
               (item.id === "portfolio" && !modalOpen) ||
