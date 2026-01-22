@@ -210,7 +210,7 @@ export default function Home() {
               <img
                 src="/assets/jen.jpg"
                 alt="Jen Sanborn"
-                className="w-64 h-64 rounded-full object-cover mx-auto my-12 border-[6px] border-[#e0e0e0]"
+                className="w-80 h-56 rounded-2xl object-cover mx-auto my-12 border-[3px] border-[#d2dcff]"
               />
               <div className="text-neutral-600 space-y-4">
                 <p>
