@@ -11,7 +11,6 @@ export default function Home() {
     { label: "Portfolio", id: "portfolio" },
     { label: "About", id: "about" },
     { label: "Writings", id: "writings" },
-    { label: "Connect", id: "connect" },
   ];
 
   const handleMenuClick = (id) => {
@@ -226,6 +225,18 @@ export default function Home() {
                   to pause and find connection in the everyday sacred.
                 </p>
               </div>
+
+              <div className="mt-12 pt-8 border-t border-[#e0e0e0]">
+                <h3 className="font-[family-name:var(--font-megrim)] text-2xl mb-4">Connect</h3>
+                <div className="text-neutral-600 space-y-2">
+                  <p>
+                    <a href="mailto:jen@example.com" className="hover:text-neutral-800 transition-colors">jen@example.com</a>
+                  </p>
+                  <p>
+                    <a href="tel:+15551234567" className="hover:text-neutral-800 transition-colors">(555) 123-4567</a>
+                  </p>
+                </div>
+              </div>
             </div>
           )}
           {modalContent === "writings" && (
@@ -234,13 +245,7 @@ export default function Home() {
               <p className="text-neutral-600">Blog posts will go here...</p>
             </div>
           )}
-          {modalContent === "connect" && (
-            <div>
-              <h2 className="font-[family-name:var(--font-megrim)] text-4xl mb-8">Connect</h2>
-              <p className="text-neutral-600">Contact information goes here...</p>
-            </div>
-          )}
-          {modalContent?.type === "painting" && (
+                    {modalContent?.type === "painting" && (
             <div className="flex items-center justify-center h-full relative">
               {/* Previous arrow */}
               <button
