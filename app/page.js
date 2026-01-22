@@ -84,7 +84,7 @@ export default function Home() {
           href="https://www.etsy.com/shop/YOURSHOP"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-8 px-4 py-2 text-sm tracking-widest uppercase border border-neutral-300 hover:border-neutral-400 hover:bg-neutral-50 transition-all w-fit"
+          className="mt-8 px-4 py-2 text-sm tracking-widest uppercase border border-[#c9a063] text-[#c9a063] hover:bg-[#c9a063] hover:text-white transition-all w-fit"
         >
           Shop
         </a>
@@ -101,6 +101,15 @@ export default function Home() {
               <rect x="2" y="2" width="20" height="20" rx="5" />
               <circle cx="12" cy="12" r="4" />
               <circle cx="18" cy="6" r="1" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
+          <a
+            href="mailto:Jen@sanbornstudio.com"
+            className="text-neutral-400 hover:text-neutral-600 transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="M22 6l-10 7L2 6" />
             </svg>
           </a>
         </div>
@@ -165,7 +174,7 @@ export default function Home() {
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                 )}
-                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                   <span className="text-xs tracking-wide text-white">{painting.title}</span>
                 </div>
@@ -230,10 +239,7 @@ export default function Home() {
                 <h3 className="font-[family-name:var(--font-megrim)] text-2xl mb-4">Connect</h3>
                 <div className="text-neutral-600 space-y-2">
                   <p>
-                    <a href="mailto:jen@example.com" className="hover:text-neutral-800 transition-colors">jen@example.com</a>
-                  </p>
-                  <p>
-                    <a href="tel:+15551234567" className="hover:text-neutral-800 transition-colors">(555) 123-4567</a>
+                    <a href="mailto:Jen@sanbornstudio.com" className="text-[#c9a063] hover:text-[#a8854f] transition-colors">Jen@sanbornstudio.com</a>
                   </p>
                 </div>
               </div>
@@ -287,11 +293,11 @@ export default function Home() {
                     />
                   )}
                 </div>
-                <div className="flex items-center gap-2 text-sm text-neutral-400">
+                <div className="flex items-center gap-2 text-sm text-[#c9a063]">
                   {modalContent.painting.medium && <span>{modalContent.painting.medium}</span>}
                   {modalContent.painting.medium && modalContent.painting.size && <span>·</span>}
                   {modalContent.painting.size && <span>{modalContent.painting.size}</span>}
-                  {modalContent.painting.sold && <span className="ml-2 text-neutral-500 uppercase tracking-wider text-xs">Sold</span>}
+                  {modalContent.painting.sold && <span className="ml-2 uppercase tracking-wider text-xs">Sold</span>}
                 </div>
               </div>
 
