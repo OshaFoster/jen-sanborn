@@ -206,9 +206,26 @@ export default function Home() {
         {/* Modal content */}
         <div className="p-8 h-full overflow-y-auto relative z-10">
           {modalContent === "about" && (
-            <div>
-              <h2 className="font-[family-name:var(--font-megrim)] text-4xl mb-8">About</h2>
-              <p className="text-neutral-600">About content goes here...</p>
+            <div className="max-w-xl mx-auto pt-16 text-center">
+              <h2 className="font-[family-name:var(--font-megrim)] text-4xl mb-8">About Me</h2>
+              <img
+                src="/assets/jen.jpg"
+                alt="Jen Sanborn"
+                className="w-64 h-64 rounded-full object-cover mx-auto my-12 border-[6px] border-[#e0e0e0]"
+              />
+              <div className="text-neutral-600 space-y-4">
+                <p>
+                  I'm a contemporary oil painter whose work explores the delicate
+                  relationship between nature and the human spirit. Working primarily in oils,
+                  I create luminous pieces that capture fleeting moments of beauty in the
+                  natural world.
+                </p>
+                <p>
+                  Based in the American Southwest, I draw inspiration from the landscapes,
+                  wildlife, and quiet moments that surround me. My paintings invite viewers
+                  to pause and find connection in the everyday sacred.
+                </p>
+              </div>
             </div>
           )}
           {modalContent === "writings" && (
