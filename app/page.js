@@ -1,11 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import paintings from "@/data/paintings.json";
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
 
   const menuItems = [
     { label: "Portfolio", id: "portfolio" },
@@ -81,7 +86,7 @@ export default function Home() {
 
         {/* Shop button */}
         <a
-          href="https://www.etsy.com/shop/YOURSHOP"
+          href="https://www.etsy.com/shop/sanbornstudio"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-8 px-4 py-2 text-sm tracking-widest uppercase border border-[#c9a063] text-[#c9a063] hover:bg-[#c9a063] hover:text-white transition-all w-fit"
@@ -118,7 +123,9 @@ export default function Home() {
         <img
           src="/assets/bird.png"
           alt=""
-          className="absolute bottom-[44px] left-8 w-24 opacity-80 z-40"
+          className={`absolute bottom-[44px] left-8 w-24 z-40 transition-opacity duration-700 ease-out ${
+            loaded ? 'opacity-80' : 'opacity-0'
+          }`}
         />
 
         {/* Dimming overlay - on top of everything except line */}
@@ -154,10 +161,15 @@ export default function Home() {
         </svg>
         <div className="h-full overflow-y-auto p-16">
           <div className="columns-4 gap-8 relative z-10">
-          {paintings.map((painting) => (
+          {paintings.map((painting, index) => (
             <div
               key={painting.id}
-              className="break-inside-avoid mb-10"
+              className={`break-inside-avoid mb-10 transition-all duration-1000 ease-out ${
+                loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+              style={{
+                transitionDelay: `${400 + index * 150}ms`
+              }}
             >
               <div
                 onClick={() => {
@@ -252,7 +264,11 @@ export default function Home() {
             </div>
           )}
                     {modalContent?.type === "painting" && (
-            <div className="flex items-center justify-center h-full relative">
+            <div
+              key={modalContent.painting.id}
+              className="flex items-center justify-center h-full relative animate-[fadeIn_0.3s_ease-out_forwards]"
+              style={{ opacity: 0 }}
+            >
               {/* Previous arrow */}
               <button
                 onClick={(e) => {
