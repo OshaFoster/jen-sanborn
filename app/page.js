@@ -241,11 +241,21 @@ export default function Home() {
               </button>
 
               {/* Painting */}
-              <div className="flex flex-col items-center gap-4 h-full justify-center">
+              <div className="flex flex-col items-center gap-3 h-full justify-center">
                 <span className="font-[family-name:var(--font-megrim)] text-2xl text-neutral-700">{modalContent.painting.title}</span>
                 <div
                   style={{ aspectRatio: modalContent.painting.aspectRatio }}
-                  className="bg-neutral-100 border border-neutral-200 rounded h-[60vh] overflow-hidden"
+                  className={`bg-neutral-100 border border-neutral-200 rounded overflow-hidden ${
+                    (() => {
+                      const size = modalContent.painting.size || '';
+                      const match = size.match(/(\d+)"?\s*x\s*(\d+)/i);
+                      if (match) {
+                        const height = parseInt(match[2], 10);
+                        if (height >= 30) return 'h-[80vh]';
+                      }
+                      return 'h-[60vh]';
+                    })()
+                  }`}
                 >
                   {modalContent.painting.image && (
                     <img
@@ -254,6 +264,12 @@ export default function Home() {
                       className="w-full h-full object-cover"
                     />
                   )}
+                </div>
+                <div className="flex items-center gap-2 text-sm text-neutral-400">
+                  {modalContent.painting.medium && <span>{modalContent.painting.medium}</span>}
+                  {modalContent.painting.medium && modalContent.painting.size && <span>·</span>}
+                  {modalContent.painting.size && <span>{modalContent.painting.size}</span>}
+                  {modalContent.painting.sold && <span className="ml-2 text-neutral-500 uppercase tracking-wider text-xs">Sold</span>}
                 </div>
               </div>
 
