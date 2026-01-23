@@ -187,8 +187,9 @@ export default function Home() {
                   />
                 )}
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                   <span className="text-xs tracking-wide text-white">{painting.title}</span>
+                  {painting.size && <span className="text-xs tracking-wide text-[#c9a063] mt-1">{painting.size}</span>}
                 </div>
               </div>
             </div>
