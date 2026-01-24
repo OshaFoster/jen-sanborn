@@ -289,7 +289,7 @@ export default function Home() {
                 <p>
                   Based in the American Southwest, I draw inspiration from the landscapes,
                   wildlife, and quiet moments that surround me. My paintings invite viewers
-                  to pause and find connection in the everyday sacred.
+                  to pause and find connection in these moments of Grace.
                 </p>
               </div>
 
