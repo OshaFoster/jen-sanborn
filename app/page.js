@@ -7,6 +7,7 @@ export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
   const [loaded, setLoaded] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     setLoaded(true);
@@ -19,6 +20,7 @@ export default function Home() {
   ];
 
   const handleMenuClick = (id) => {
+    setMenuOpen(false); // Close mobile menu
     if (modalOpen) {
       closeModal();
     } else if (id !== "portfolio") {
@@ -33,11 +35,35 @@ export default function Home() {
   };
 
   return (
-    <div className="flex h-screen w-screen relative overflow-hidden">
-      {/* Sidebar - 25% */}
+    <div className="flex flex-col md:flex-row h-screen w-screen relative overflow-hidden">
+      {/* Mobile header */}
+      <div className="md:hidden flex items-center justify-between p-6 bg-white z-50">
+        <h1 className="font-[family-name:var(--font-megrim)] text-3xl tracking-wide">
+          Jen Sanborn
+        </h1>
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="p-2 text-neutral-600"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            {menuOpen ? (
+              <path d="M6 6l12 12M6 18L18 6" />
+            ) : (
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
+      </div>
+
+      {/* Sidebar - 25% on desktop, full overlay on mobile */}
       <aside
         onClick={() => modalOpen && closeModal()}
-        className="w-1/4 h-full flex flex-col pt-16 px-8 pb-8 cursor-pointer relative z-10 bg-white"
+        className={`
+          md:w-1/4 md:h-full md:flex md:flex-col md:pt-16 md:px-8 md:pb-8 md:relative md:translate-x-0
+          fixed inset-0 z-40 bg-white flex flex-col pt-28 px-8 pb-8 transform transition-transform duration-300
+          ${menuOpen ? 'translate-x-0' : '-translate-x-full'}
+          md:cursor-pointer
+        `}
       >
         {/* Line drawing - sidebar portion (spiral) */}
         <svg
@@ -55,14 +81,14 @@ export default function Home() {
             strokeWidth="0.5"
           />
         </svg>
-        <h1 className="font-[family-name:var(--font-megrim)] text-6xl tracking-wide mb-2">
+        <h1 className="hidden md:block font-[family-name:var(--font-megrim)] text-6xl tracking-wide mb-2">
           Jen Sanborn
         </h1>
-        <span className="text-sm tracking-[0.4em] uppercase text-[#c0c0c0] mb-12 block">
+        <span className="hidden md:block text-sm tracking-[0.4em] uppercase text-[#c0c0c0] mb-12">
           Artist
         </span>
 
-        <nav className="flex flex-col gap-6">
+        <nav className="flex flex-col gap-8 md:gap-6">
           {menuItems.map((item) => {
             const isActive =
               (item.id === "portfolio" && !modalOpen) ||
@@ -74,7 +100,7 @@ export default function Home() {
                   e.stopPropagation();
                   handleMenuClick(item.id);
                 }}
-                className={`text-sm tracking-widest uppercase hover:text-neutral-500 transition-colors text-left pb-1 w-fit ${
+                className={`text-base md:text-sm tracking-widest uppercase hover:text-neutral-500 transition-colors text-left pb-1 w-fit ${
                   isActive ? "border-b border-neutral-300" : ""
                 }`}
               >
@@ -137,8 +163,8 @@ export default function Home() {
         />
       </aside>
 
-      {/* Gallery Section - 75% */}
-      <main className="w-3/4 h-full relative">
+      {/* Gallery Section - 75% on desktop, full on mobile */}
+      <main className="w-full md:w-3/4 h-full relative flex-1">
         {/* Line drawing - gallery portion (spiral continues) - fixed */}
         <svg
           className="absolute inset-0 w-full h-full pointer-events-none z-0"
@@ -159,12 +185,12 @@ export default function Home() {
             strokeWidth="0.5"
           />
         </svg>
-        <div className="h-full overflow-y-auto p-16">
-          <div className="columns-4 gap-8 relative z-10">
+        <div className="h-full overflow-y-auto p-6 md:p-8 lg:p-16">
+          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 md:gap-8 relative z-10">
           {paintings.map((painting, index) => (
             <div
               key={painting.id}
-              className={`break-inside-avoid mb-10 transition-all duration-1000 ease-out ${
+              className={`break-inside-avoid mb-8 md:mb-10 transition-all duration-1000 ease-out ${
                 loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
               style={{
@@ -200,7 +226,7 @@ export default function Home() {
 
       {/* Modal Overlay */}
       <div
-        className={`absolute top-0 right-0 w-3/4 h-full bg-[#fafafa] transform transition-all duration-300 ease-in-out z-20 rounded-l-lg overflow-hidden will-change-transform ${
+        className={`absolute top-0 right-0 w-full md:w-3/4 h-full bg-[#fafafa] transform transition-all duration-300 ease-in-out z-50 md:z-20 rounded-none md:rounded-l-lg overflow-hidden will-change-transform ${
           modalOpen ? "translate-x-0 opacity-100 shadow-[-10px_0_60px_rgba(0,0,0,0.2)]" : "translate-x-full opacity-0 shadow-none"
         }`}
       >
@@ -224,15 +250,25 @@ export default function Home() {
             strokeWidth="0.5"
           />
         </svg>
+        {/* Close button */}
+        <button
+          onClick={closeModal}
+          className="absolute top-4 right-4 p-2 text-neutral-500 hover:text-neutral-700 transition-colors z-20"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path d="M6 6l12 12M6 18L18 6" />
+          </svg>
+        </button>
+
         {/* Modal content */}
-        <div className="p-8 h-full overflow-y-auto relative z-10">
+        <div className="p-4 md:p-8 h-full overflow-y-auto relative z-10">
           {modalContent === "about" && (
             <div className="max-w-xl mx-auto pt-16 text-center">
               <h2 className="font-[family-name:var(--font-megrim)] text-4xl mb-8">About Me</h2>
               <img
                 src="/assets/jen.jpg"
                 alt="Jen Sanborn"
-                className="w-80 h-56 rounded-2xl object-cover mx-auto my-12 border-[3px] border-[#d2dcff]"
+                className="w-64 h-44 md:w-80 md:h-56 rounded-2xl object-cover mx-auto my-8 md:my-12 border-[3px] border-[#d2dcff]"
               />
               <div className="text-neutral-600 space-y-4">
                 <p>
