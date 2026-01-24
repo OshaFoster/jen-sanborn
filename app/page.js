@@ -16,7 +16,7 @@ export default function Home() {
   const menuItems = [
     { label: "Portfolio", id: "portfolio" },
     { label: "About", id: "about" },
-    { label: "Writings", id: "writings" },
+    { label: "Artist's Notes", id: "writings" },
   ];
 
   const handleMenuClick = (id) => {
@@ -37,10 +37,15 @@ export default function Home() {
   return (
     <div className="flex flex-col md:flex-row h-screen w-screen relative overflow-hidden">
       {/* Mobile header */}
-      <div className="md:hidden flex items-center justify-between p-6 bg-white z-50">
-        <h1 className="font-[family-name:var(--font-megrim)] text-3xl tracking-wide">
-          Jen Sanborn
-        </h1>
+      <div className="md:hidden flex justify-between items-start px-6 py-4 z-50">
+        <div>
+          <h1 className="font-[family-name:var(--font-megrim)] text-4xl tracking-wide">
+            Jen Sanborn
+          </h1>
+          <span className="text-xs tracking-[0.3em] uppercase text-[#c0c0c0]">
+            Artist
+          </span>
+        </div>
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="p-2 text-neutral-600"
@@ -59,8 +64,8 @@ export default function Home() {
       <aside
         onClick={() => modalOpen && closeModal()}
         className={`
-          md:w-1/4 md:h-full md:flex md:flex-col md:pt-16 md:px-8 md:pb-8 md:relative md:translate-x-0
-          fixed inset-0 z-40 bg-white flex flex-col pt-28 px-8 pb-8 transform transition-transform duration-300
+          md:w-1/4 md:h-full md:flex md:flex-col md:pt-16 md:px-8 md:pb-8 md:relative md:translate-x-0 md:z-10
+          fixed inset-0 z-40 bg-white flex flex-col pt-28 px-6 pb-8 transform transition-transform duration-300
           ${menuOpen ? 'translate-x-0' : '-translate-x-full'}
           md:cursor-pointer
         `}
@@ -81,7 +86,7 @@ export default function Home() {
             strokeWidth="0.5"
           />
         </svg>
-        <h1 className="hidden md:block font-[family-name:var(--font-megrim)] text-6xl tracking-wide mb-2">
+        <h1 className="hidden md:block font-[family-name:var(--font-megrim)] text-4xl lg:text-6xl tracking-wide mb-2">
           Jen Sanborn
         </h1>
         <span className="hidden md:block text-sm tracking-[0.4em] uppercase text-[#c0c0c0] mb-12">
@@ -100,7 +105,7 @@ export default function Home() {
                   e.stopPropagation();
                   handleMenuClick(item.id);
                 }}
-                className={`text-base md:text-sm tracking-widest uppercase hover:text-neutral-500 transition-colors text-left pb-1 w-fit ${
+                className={`text-lg md:text-sm tracking-widest uppercase hover:text-neutral-500 transition-colors text-left pb-1 w-fit ${
                   isActive ? "border-b border-neutral-300" : ""
                 }`}
               >
@@ -115,7 +120,7 @@ export default function Home() {
           href="https://www.etsy.com/shop/sanbornstudio"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-8 px-4 py-2 text-sm tracking-widest uppercase border border-[#c9a063] text-[#c9a063] hover:bg-[#c9a063] hover:text-white transition-all w-fit"
+          className="mt-8 px-4 py-2 text-sm tracking-widest uppercase border border-[#AB622C] text-[#AB622C] hover:bg-[#AB622C] hover:text-white transition-all w-fit"
         >
           Shop
         </a>
@@ -215,7 +220,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                   <span className="text-xs tracking-wide text-white">{painting.title}</span>
-                  {painting.size && <span className="text-xs tracking-wide text-[#c9a063] mt-1">{painting.size}</span>}
+                  {painting.size && <span className="text-xs tracking-wide text-[#AB622C] mt-1">{painting.size}</span>}
                 </div>
               </div>
             </div>
@@ -288,7 +293,7 @@ export default function Home() {
                 <h3 className="font-[family-name:var(--font-megrim)] text-2xl mb-4">Connect</h3>
                 <div className="text-neutral-600 space-y-2">
                   <p>
-                    <a href="mailto:Jen@sanbornstudio.com" className="text-[#c9a063] hover:text-[#a8854f] transition-colors">Jen@sanbornstudio.com</a>
+                    <a href="mailto:Jen@sanbornstudio.com" className="text-[#AB622C] hover:text-[#a8854f] transition-colors">Jen@sanbornstudio.com</a>
                   </p>
                 </div>
               </div>
@@ -296,7 +301,7 @@ export default function Home() {
           )}
           {modalContent === "writings" && (
             <div>
-              <h2 className="font-[family-name:var(--font-megrim)] text-4xl mb-8">Writings</h2>
+              <h2 className="font-[family-name:var(--font-megrim)] text-4xl mb-8">Artist's Notes</h2>
               <p className="text-neutral-600">Blog posts will go here...</p>
             </div>
           )}
@@ -346,7 +351,7 @@ export default function Home() {
                     />
                   )}
                 </div>
-                <div className="flex items-center gap-2 text-sm text-[#c9a063]">
+                <div className="flex items-center gap-2 text-sm text-[#AB622C]">
                   {modalContent.painting.medium && <span>{modalContent.painting.medium}</span>}
                   {modalContent.painting.medium && modalContent.painting.size && <span>·</span>}
                   {modalContent.painting.size && <span>{modalContent.painting.size}</span>}
