@@ -42,7 +42,7 @@ export default function Home() {
           <h1 className="font-[family-name:var(--font-megrim)] text-4xl tracking-wide">
             Jen Sanborn
           </h1>
-          <span className="text-xs tracking-[0.3em] uppercase text-[#c0c0c0]">
+          <span className="text-xs tracking-[0.3em] uppercase text-[#968881]">
             Artist
           </span>
         </div>
@@ -64,7 +64,7 @@ export default function Home() {
       <aside
         onClick={() => modalOpen && closeModal()}
         className={`
-          md:w-1/4 md:h-full md:flex md:flex-col md:pt-16 md:px-8 md:pb-8 md:relative md:translate-x-0 md:z-10
+          md:w-1/4 md:h-full md:flex md:flex-col md:pt-16 md:px-8 md:pb-8 md:relative md:translate-x-0 md:z-10 md:overflow-visible
           fixed inset-0 z-40 bg-white flex flex-col pt-28 px-6 pb-8 transform transition-transform duration-300
           ${menuOpen ? 'translate-x-0' : '-translate-x-full'}
           md:cursor-pointer
@@ -72,24 +72,25 @@ export default function Home() {
       >
         {/* Line drawing - sidebar portion (spiral) */}
         <svg
-          className="absolute inset-0 w-full h-full pointer-events-none z-30"
-          viewBox="0 0 25 100"
+          className="absolute inset-0 w-[103%] h-full pointer-events-none z-30 overflow-visible"
+          viewBox="0 0 26 100"
           preserveAspectRatio="none"
         >
           <path
             d="M 5 95
                Q 20 85, 15 70
                Q 10 55, 20 45
-               Q 25 40, 25 40"
+               Q 26 40, 26 40"
             fill="none"
-            stroke="#f0f0f0"
+            stroke="#c4e0ff"
             strokeWidth="0.5"
+            strokeLinecap="round"
           />
         </svg>
         <h1 className="hidden md:block font-[family-name:var(--font-megrim)] text-4xl lg:text-6xl tracking-wide mb-2">
           Jen Sanborn
         </h1>
-        <span className="hidden md:block text-sm tracking-[0.4em] uppercase text-[#c0c0c0] mb-12">
+        <span className="hidden md:block text-sm tracking-[0.4em] uppercase text-[#968881] mb-12">
           Artist
         </span>
 
@@ -150,6 +151,7 @@ export default function Home() {
           </a>
         </div>
 
+
         {/* Bird illustration */}
         <img
           src="/assets/bird.png"
@@ -177,7 +179,7 @@ export default function Home() {
           preserveAspectRatio="none"
         >
           <path
-            d="M 0 40
+            d="M -2.2 42
                Q 15 30, 30 40
                Q 50 55, 40 75
                Q 30 90, 50 95
@@ -186,8 +188,9 @@ export default function Home() {
                Q 40 30, 55 15
                Q 70 0, 75 10"
             fill="none"
-            stroke="#f0f0f0"
+            stroke="#c4e0ff"
             strokeWidth="0.5"
+            strokeLinecap="round"
           />
         </svg>
         <div className="h-full overflow-y-auto p-6 md:p-8 lg:p-16">
@@ -242,7 +245,7 @@ export default function Home() {
           preserveAspectRatio="none"
         >
           <path
-            d="M 0 40
+            d="M -2 42
                Q 15 30, 30 40
                Q 50 55, 40 75
                Q 30 90, 50 95
@@ -251,8 +254,9 @@ export default function Home() {
                Q 40 30, 55 15
                Q 70 0, 75 10"
             fill="none"
-            stroke="#f0f0f0"
+            stroke="#c4e0ff"
             strokeWidth="0.5"
+            strokeLinecap="round"
           />
         </svg>
         {/* Close button */}
@@ -268,7 +272,7 @@ export default function Home() {
         {/* Modal content */}
         <div className="p-4 md:p-8 h-full overflow-y-auto relative z-10 overscroll-contain">
           {modalContent === "about" && (
-            <div className="max-w-xl mx-auto pt-16 md:pt-[8vh] lg:pt-16 pb-[50vh] md:pb-20 lg:pb-40 text-center">
+            <div className="max-w-2xl mx-auto pt-16 md:pt-[8vh] lg:pt-16 pb-[50vh] md:pb-20 lg:pb-0 px-12 text-center" style={{ background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 100%)' }}>
               <h2 className="font-[family-name:var(--font-megrim)] text-4xl mb-8 md:mb-[3vh] lg:mb-8">About Me</h2>
               <img
                 src="/assets/jen.jpg"
