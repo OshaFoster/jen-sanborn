@@ -289,7 +289,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="mt-12 pt-8 border-t border-[#e0e0e0]">
+              <div className="mt-8 md:mt-12 pt-8 border-t border-[#e0e0e0]">
                 <h3 className="font-[family-name:var(--font-megrim)] text-2xl mb-4">Connect</h3>
                 <div className="text-neutral-600 space-y-2">
                   <p>
