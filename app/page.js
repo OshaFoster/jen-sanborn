@@ -105,7 +105,7 @@ export default function Home() {
                   e.stopPropagation();
                   handleMenuClick(item.id);
                 }}
-                className={`text-lg md:text-sm tracking-widest uppercase hover:text-neutral-500 transition-colors text-left pb-1 w-fit ${
+                className={`text-sm tracking-widest uppercase hover:text-neutral-500 transition-colors text-left pb-1 w-fit ${
                   isActive ? "border-b border-neutral-300" : ""
                 }`}
               >
