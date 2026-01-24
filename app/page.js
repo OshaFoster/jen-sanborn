@@ -268,14 +268,14 @@ export default function Home() {
         {/* Modal content */}
         <div className="p-4 md:p-8 h-full overflow-y-auto relative z-10 overscroll-contain">
           {modalContent === "about" && (
-            <div className="max-w-xl mx-auto pt-16 pb-60 text-center">
-              <h2 className="font-[family-name:var(--font-megrim)] text-4xl mb-8">About Me</h2>
+            <div className="max-w-xl mx-auto pt-16 md:pt-[8vh] lg:pt-16 pb-[50vh] md:pb-20 lg:pb-40 text-center">
+              <h2 className="font-[family-name:var(--font-megrim)] text-4xl mb-8 md:mb-[3vh] lg:mb-8">About Me</h2>
               <img
                 src="/assets/jen.jpg"
                 alt="Jen Sanborn"
-                className="w-64 h-44 md:w-80 md:h-56 rounded-2xl object-cover mx-auto my-8 md:my-12 border-[3px] border-[#d2dcff]"
+                className="w-64 h-44 md:w-72 md:h-48 lg:w-80 lg:h-56 rounded-2xl object-cover mx-auto my-8 md:my-[3vh] lg:my-12 border-[3px] border-[#d2dcff]"
               />
-              <div className="text-neutral-600 space-y-4">
+              <div className="text-neutral-600 space-y-4 md:space-y-3 lg:space-y-4">
                 <p>
                   I'm a contemporary oil painter whose work explores the delicate
                   relationship between nature and the human spirit. Working primarily in oils,
@@ -289,8 +289,8 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="mt-6 md:mt-12 pt-8 border-t border-[#e0e0e0]">
-                <h3 className="font-[family-name:var(--font-megrim)] text-2xl mb-4">Connect</h3>
+              <div className="mt-6 md:mt-[4vh] lg:mt-12 pt-8 md:pt-[3vh] lg:pt-8 border-t border-[#e0e0e0]">
+                <h3 className="font-[family-name:var(--font-megrim)] text-2xl mb-4 md:mb-3 lg:mb-4">Connect</h3>
                 <div className="text-neutral-600 space-y-2">
                   <p>
                     <a href="mailto:Jen@sanbornstudio.com" className="text-[#AB622C] hover:text-[#a8854f] transition-colors">Jen@sanbornstudio.com</a>
