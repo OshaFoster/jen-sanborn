@@ -268,7 +268,7 @@ export default function Home() {
         {/* Modal content */}
         <div className="p-4 md:p-8 h-full overflow-y-auto relative z-10 overscroll-contain">
           {modalContent === "about" && (
-            <div className="max-w-xl mx-auto pt-16 pb-40 text-center">
+            <div className="max-w-xl mx-auto pt-16 pb-60 text-center">
               <h2 className="font-[family-name:var(--font-megrim)] text-4xl mb-8">About Me</h2>
               <img
                 src="/assets/jen.jpg"
@@ -289,7 +289,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="mt-8 md:mt-12 pt-8 border-t border-[#e0e0e0]">
+              <div className="mt-6 md:mt-12 pt-8 border-t border-[#e0e0e0]">
                 <h3 className="font-[family-name:var(--font-megrim)] text-2xl mb-4">Connect</h3>
                 <div className="text-neutral-600 space-y-2">
                   <p>
