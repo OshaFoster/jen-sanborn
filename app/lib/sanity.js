@@ -30,7 +30,8 @@ export async function getPosts() {
       slug,
       publishedAt,
       excerpt,
-      "previewImage": images[0]
+      "previewImage": images[0],
+      videoUrl
     }
   `);
 }
