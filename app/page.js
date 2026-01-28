@@ -2,16 +2,39 @@
 
 import { useState, useEffect } from "react";
 import paintings from "@/data/paintings.json";
+import { getPosts, getPost } from "./lib/sanity";
+import BlogList from "./components/BlogList";
+import BlogPost from "./components/BlogPost";
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
   const [loaded, setLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [posts, setPosts] = useState([]);
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [postsLoading, setPostsLoading] = useState(false);
 
   useEffect(() => {
     setLoaded(true);
   }, []);
+
+  // Fetch blog posts when writings modal opens
+  useEffect(() => {
+    if (modalContent === "writings" && posts.length === 0) {
+      setPostsLoading(true);
+      getPosts()
+        .then((data) => {
+          setPosts(data || []);
+        })
+        .catch((err) => {
+          console.error("Error fetching posts:", err);
+        })
+        .finally(() => {
+          setPostsLoading(false);
+        });
+    }
+  }, [modalContent, posts.length]);
 
   const menuItems = [
     { label: "Portfolio", id: "portfolio" },
@@ -32,6 +55,13 @@ export default function Home() {
   const closeModal = () => {
     setModalOpen(false);
     setModalContent(null);
+    setSelectedPost(null);
+  };
+
+  const handleSelectPost = async (post) => {
+    // Fetch full post data including content
+    const fullPost = await getPost(post.slug.current);
+    setSelectedPost(fullPost);
   };
 
   return (
@@ -134,7 +164,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="text-neutral-400 hover:text-neutral-600 transition-colors"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <rect x="2" y="2" width="20" height="20" rx="5" />
               <circle cx="12" cy="12" r="4" />
               <circle cx="18" cy="6" r="1" fill="currentColor" stroke="none" />
@@ -144,7 +174,7 @@ export default function Home() {
             href="mailto:Jen@sanbornstudio.com"
             className="text-neutral-400 hover:text-neutral-600 transition-colors"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <rect x="2" y="4" width="20" height="16" rx="2" />
               <path d="M22 6l-10 7L2 6" />
             </svg>
@@ -304,9 +334,29 @@ export default function Home() {
             </div>
           )}
           {modalContent === "writings" && (
-            <div>
-              <h2 className="font-[family-name:var(--font-megrim)] text-4xl mb-8">Artist's Notes</h2>
-              <p className="text-neutral-600">Blog posts will go here...</p>
+            <div className="max-w-4xl mx-auto my-8 p-8 bg-[#faf8f5]/80 border-2 border-[#968881]/50 rounded-lg">
+              {selectedPost ? (
+                <BlogPost
+                  post={selectedPost}
+                  onBack={() => setSelectedPost(null)}
+                />
+              ) : (
+                <>
+                  <h2 className="font-[family-name:var(--font-megrim)] text-4xl mb-8">
+                    Artist's Notes
+                  </h2>
+                  {postsLoading ? (
+                    <div className="text-center py-12">
+                      <p className="text-neutral-500">Loading posts...</p>
+                    </div>
+                  ) : (
+                    <BlogList
+                      posts={posts}
+                      onSelectPost={handleSelectPost}
+                    />
+                  )}
+                </>
+              )}
             </div>
           )}
                     {modalContent?.type === "painting" && (
