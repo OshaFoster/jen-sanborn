@@ -6,9 +6,9 @@ import { portableTextComponents } from "./PortableTextComponents";
 function getVideoEmbedUrl(url) {
   if (!url) return null;
 
-  // YouTube
+  // YouTube (including Shorts)
   const youtubeMatch = url.match(
-    /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+    /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
   );
   if (youtubeMatch) {
     return `https://www.youtube.com/embed/${youtubeMatch[1]}`;
@@ -72,45 +72,49 @@ export default function BlogPost({ post, onBack }) {
         </div>
       )}
 
-      {/* Media at bottom: Video or Images */}
-      {post.mediaType === "video" && videoEmbedUrl ? (
-        <div className="mt-8 pt-6 border-t border-neutral-200">
-          <div className="aspect-video max-w-md">
-            <iframe
-              src={videoEmbedUrl}
-              className="w-full h-full rounded-lg"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title="Video"
-            />
-          </div>
-        </div>
-      ) : post.images && post.images.length > 0 ? (
-        <div className="mt-8 pt-6 border-t border-neutral-200">
-          <div className="flex flex-wrap gap-3">
-            {post.images.map((image, index) => {
-              const imageUrl = urlFor(image);
-              if (!imageUrl) return null;
+      {/* Media at bottom: Images and/or Video */}
+      {(videoEmbedUrl || (post.images && post.images.length > 0)) && (
+        <div className="mt-8 pt-6 border-t border-neutral-200 space-y-6">
+          {/* Video */}
+          {videoEmbedUrl && (
+            <div className="aspect-video max-w-md">
+              <iframe
+                src={videoEmbedUrl}
+                className="w-full h-full rounded-lg"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Video"
+              />
+            </div>
+          )}
 
-              return (
-                <figure key={index} className="w-32">
-                  <img
-                    src={imageUrl}
-                    alt={image.alt || post.title}
-                    className="w-full h-24 object-cover rounded"
-                  />
-                  {image.caption && (
-                    <figcaption className="text-xs text-neutral-500 mt-1 italic">
-                      {image.caption}
-                    </figcaption>
-                  )}
-                </figure>
-              );
-            })}
-          </div>
+          {/* Images */}
+          {post.images && post.images.length > 0 && (
+            <div className="flex flex-wrap gap-3">
+              {post.images.map((image, index) => {
+                const imageUrl = urlFor(image);
+                if (!imageUrl) return null;
+
+                return (
+                  <figure key={index} className="w-32">
+                    <img
+                      src={imageUrl}
+                      alt={image.alt || post.title}
+                      className="w-full h-24 object-cover rounded"
+                    />
+                    {image.caption && (
+                      <figcaption className="text-xs text-neutral-500 mt-1 italic">
+                        {image.caption}
+                      </figcaption>
+                    )}
+                  </figure>
+                );
+              })}
+            </div>
+          )}
         </div>
-      ) : null}
+      )}
     </article>
   );
 }
