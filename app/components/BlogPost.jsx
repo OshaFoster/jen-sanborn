@@ -47,7 +47,7 @@ export default function BlogPost({ post, onBack }) {
       {/* Back button */}
       <button
         onClick={onBack}
-        className="flex items-center gap-2 text-neutral-500 hover:text-neutral-700 transition-colors mb-6"
+        className="flex items-center gap-2 text-neutral-500 hover:text-neutral-700 transition-colors mb-4"
       >
         <svg
           width="20"
@@ -62,17 +62,17 @@ export default function BlogPost({ post, onBack }) {
         <span className="text-sm uppercase tracking-wider">Back to posts</span>
       </button>
 
-      {/* Header */}
-      <header className="mb-6">
-        <h1 className="font-[family-name:var(--font-megrim)] text-4xl text-neutral-800 mb-2">
+      {/* Header - centered */}
+      <header className="mb-4 text-center">
+        <h1 className="font-[family-name:var(--font-megrim)] text-3xl text-neutral-800 mb-1">
           {post.title}
         </h1>
         {date && <time className="text-sm text-neutral-400">{date}</time>}
       </header>
 
-      {/* Hero: Video or First Image (large) */}
+      {/* Hero: Video or First Image */}
       {videoEmbedUrl ? (
-        <div className="aspect-video w-full mb-8">
+        <div className="aspect-video w-full mb-5">
           <iframe
             src={videoEmbedUrl}
             className="w-full h-full rounded-lg"
@@ -83,7 +83,7 @@ export default function BlogPost({ post, onBack }) {
           />
         </div>
       ) : heroImageUrl ? (
-        <figure className="mb-8">
+        <figure className="mb-5">
           <div
             className="rounded-lg overflow-hidden bg-neutral-100 cursor-pointer"
             onClick={() => setLightboxImage({ url: heroImageUrl, alt: heroImage.alt, caption: heroImage.caption })}
@@ -91,11 +91,12 @@ export default function BlogPost({ post, onBack }) {
             <img
               src={heroImageUrl}
               alt={heroImage.alt || post.title}
-              className="w-full h-auto"
+              className="w-full h-auto max-h-80"
+              style={{ objectFit: 'contain' }}
             />
           </div>
           {heroImage.caption && (
-            <figcaption className="text-sm text-neutral-500 mt-2 italic">
+            <figcaption className="text-sm text-neutral-500 mt-2 italic text-center">
               {heroImage.caption}
             </figcaption>
           )}
@@ -104,7 +105,7 @@ export default function BlogPost({ post, onBack }) {
 
       {/* Content */}
       {post.content && (
-        <div className="prose-custom mb-8">
+        <div className="prose-custom">
           <PortableText
             value={post.content}
             components={portableTextComponents}
@@ -114,7 +115,7 @@ export default function BlogPost({ post, onBack }) {
 
       {/* Additional Images (smaller gallery) */}
       {additionalImages.length > 0 && (
-        <div className="mt-8 pt-6 border-t border-neutral-200">
+        <div className="mt-5 pt-4 border-t border-neutral-200">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {additionalImages.map((image, index) => {
               const imageUrl = urlFor(image);
@@ -145,7 +146,7 @@ export default function BlogPost({ post, onBack }) {
       )}
 
       {/* Share & Connect */}
-      <div className="mt-8 pt-6 border-t border-neutral-200">
+      <div className="mt-5 pt-4 border-t border-neutral-200">
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
             <p className="text-sm text-neutral-500 mb-3">Share this post</p>
