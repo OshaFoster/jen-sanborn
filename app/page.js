@@ -5,6 +5,7 @@ import paintings from "@/data/paintings.json";
 import { getPosts, getPost } from "./lib/sanity";
 import BlogList from "./components/BlogList";
 import BlogPost from "./components/BlogPost";
+import ScrollReveal from "./components/ScrollReveal";
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -226,14 +227,10 @@ export default function Home() {
         <div className="h-full overflow-y-auto p-6 md:p-8 lg:p-16">
           <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 md:gap-8 relative z-10">
           {paintings.map((painting, index) => (
-            <div
+            <ScrollReveal
               key={painting.id}
-              className={`break-inside-avoid mb-8 md:mb-10 transition-all duration-1000 ease-out ${
-                loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-              style={{
-                transitionDelay: `${400 + index * 150}ms`
-              }}
+              delay={index < 8 ? index * 100 : 0}
+              className="break-inside-avoid mb-8 md:mb-10"
             >
               <div
                 onClick={() => {
@@ -256,7 +253,7 @@ export default function Home() {
                   {painting.size && <span className="text-sm tracking-wide text-white mt-1">{painting.size}</span>}
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
           </div>
         </div>

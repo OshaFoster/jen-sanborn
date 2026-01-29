@@ -1,4 +1,5 @@
 import { urlFor } from "../lib/sanity";
+import ScrollReveal from "./ScrollReveal";
 
 // Extract YouTube video ID from URL
 function getYouTubeId(url) {
@@ -20,7 +21,7 @@ export default function BlogList({ posts, onSelectPost }) {
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-      {posts.map((post) => {
+      {posts.map((post, index) => {
         const imageUrl = urlFor(post.previewImage);
         const youtubeId = getYouTubeId(post.videoUrl);
         const thumbnailUrl = youtubeId ? `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg` : imageUrl;
@@ -35,11 +36,11 @@ export default function BlogList({ posts, onSelectPost }) {
           : null;
 
         return (
-          <article
-            key={post._id}
-            onClick={() => onSelectPost(post)}
-            className="cursor-pointer group"
-          >
+          <ScrollReveal key={post._id} delay={index * 100}>
+            <article
+              onClick={() => onSelectPost(post)}
+              className="cursor-pointer group"
+            >
             {/* Thumbnail */}
             {thumbnailUrl && (
               <div className="aspect-[4/3] rounded-lg overflow-hidden bg-neutral-100 mb-3 relative">
@@ -77,7 +78,8 @@ export default function BlogList({ posts, onSelectPost }) {
                 </p>
               )}
             </div>
-          </article>
+            </article>
+          </ScrollReveal>
         );
       })}
     </div>
