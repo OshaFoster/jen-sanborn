@@ -9,7 +9,28 @@ const megrim = Megrim({
 
 export const metadata = {
   title: "Jen Sanborn",
-  description: "Artist Portfolio",
+  description: "Contemporary oil painter exploring the beauty of nature and wildlife",
+  openGraph: {
+    title: "Jen Sanborn - Artist",
+    description: "Contemporary oil painter exploring the beauty of nature and wildlife",
+    url: "https://jen-sanborn.vercel.app",
+    siteName: "Jen Sanborn",
+    images: [
+      {
+        url: "/assets/Haloed-Wanderer.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Jen Sanborn Art",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jen Sanborn - Artist",
+    description: "Contemporary oil painter exploring the beauty of nature and wildlife",
+    images: ["/assets/Haloed-Wanderer.jpg"],
+  },
 };
 
 export default function RootLayout({ children }) {
