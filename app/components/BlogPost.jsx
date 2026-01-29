@@ -37,6 +37,11 @@ export default function BlogPost({ post, onBack }) {
 
   const videoEmbedUrl = getVideoEmbedUrl(post.videoUrl);
 
+  // Split images: first one is hero, rest go to gallery
+  const heroImage = post.images?.[0];
+  const heroImageUrl = heroImage ? urlFor(heroImage) : null;
+  const additionalImages = post.images?.slice(1) || [];
+
   return (
     <article className="max-w-2xl">
       {/* Back button */}
@@ -65,7 +70,39 @@ export default function BlogPost({ post, onBack }) {
         {date && <time className="text-sm text-neutral-400">{date}</time>}
       </header>
 
-      {/* Content first */}
+      {/* Hero: Video or First Image (large) */}
+      {videoEmbedUrl ? (
+        <div className="aspect-video w-full mb-8">
+          <iframe
+            src={videoEmbedUrl}
+            className="w-full h-full rounded-lg"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title="Video"
+          />
+        </div>
+      ) : heroImageUrl ? (
+        <figure className="mb-8">
+          <div
+            className="rounded-lg overflow-hidden bg-neutral-100 cursor-pointer"
+            onClick={() => setLightboxImage({ url: heroImageUrl, alt: heroImage.alt, caption: heroImage.caption })}
+          >
+            <img
+              src={heroImageUrl}
+              alt={heroImage.alt || post.title}
+              className="w-full h-auto"
+            />
+          </div>
+          {heroImage.caption && (
+            <figcaption className="text-sm text-neutral-500 mt-2 italic">
+              {heroImage.caption}
+            </figcaption>
+          )}
+        </figure>
+      ) : null}
+
+      {/* Content */}
       {post.content && (
         <div className="prose-custom mb-8">
           <PortableText
@@ -75,52 +112,35 @@ export default function BlogPost({ post, onBack }) {
         </div>
       )}
 
-      {/* Media at bottom: Images and/or Video */}
-      {(videoEmbedUrl || (post.images && post.images.length > 0)) && (
-        <div className="mt-8 pt-6 border-t border-neutral-200 space-y-6">
-          {/* Video */}
-          {videoEmbedUrl && (
-            <div className="aspect-video w-full">
-              <iframe
-                src={videoEmbedUrl}
-                className="w-full h-full rounded-lg"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="Video"
-              />
-            </div>
-          )}
+      {/* Additional Images (smaller gallery) */}
+      {additionalImages.length > 0 && (
+        <div className="mt-8 pt-6 border-t border-neutral-200">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {additionalImages.map((image, index) => {
+              const imageUrl = urlFor(image);
+              if (!imageUrl) return null;
 
-          {/* Images */}
-          {post.images && post.images.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-              {post.images.map((image, index) => {
-                const imageUrl = urlFor(image);
-                if (!imageUrl) return null;
-
-                return (
-                  <figure key={index}>
-                    <div
-                      className="aspect-[4/3] rounded-lg overflow-hidden bg-neutral-100 cursor-pointer hover:opacity-80 transition-opacity"
-                      onClick={() => setLightboxImage({ url: imageUrl, alt: image.alt, caption: image.caption })}
-                    >
-                      <img
-                        src={imageUrl}
-                        alt={image.alt || post.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    {image.caption && (
-                      <figcaption className="text-xs text-neutral-500 mt-1 italic">
-                        {image.caption}
-                      </figcaption>
-                    )}
-                  </figure>
-                );
-              })}
-            </div>
-          )}
+              return (
+                <figure key={index}>
+                  <div
+                    className="aspect-[4/3] rounded-lg overflow-hidden bg-neutral-100 cursor-pointer hover:opacity-80 transition-opacity"
+                    onClick={() => setLightboxImage({ url: imageUrl, alt: image.alt, caption: image.caption })}
+                  >
+                    <img
+                      src={imageUrl}
+                      alt={image.alt || post.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {image.caption && (
+                    <figcaption className="text-xs text-neutral-500 mt-1 italic">
+                      {image.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              );
+            })}
+          </div>
         </div>
       )}
 
