@@ -47,7 +47,7 @@ export const portableTextComponents = {
       </h4>
     ),
     normal: ({ children }) => (
-      <p className="text-neutral-600 leading-normal mb-3">{children}</p>
+      <p className="text-neutral-600 leading-snug mb-2">{children}</p>
     ),
     blockquote: ({ children }) => (
       <blockquote className="border-l-4 border-[#c4e0ff] pl-4 my-6 italic text-neutral-500">
@@ -122,7 +122,7 @@ export const portableTextComponents = {
     ),
   },
   listItem: {
-    bullet: ({ children }) => <li className="leading-relaxed">{children}</li>,
-    number: ({ children }) => <li className="leading-relaxed">{children}</li>,
+    bullet: ({ children }) => <li className="leading-snug">{children}</li>,
+    number: ({ children }) => <li className="leading-snug">{children}</li>,
   },
 };
