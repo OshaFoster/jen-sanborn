@@ -322,11 +322,11 @@ function HomeContent() {
             strokeLinecap="round"
           />
         </svg>
-        {/* Close button - hidden when viewing blog detail */}
+        {/* Close button - mobile only, hidden when viewing blog detail */}
         {!(modalContent === "writings" && selectedPost) && (
           <button
             onClick={closeModal}
-            className="absolute top-4 right-4 p-2 text-neutral-500 hover:text-neutral-700 transition-colors z-20"
+            className="absolute top-4 right-4 p-2 text-neutral-500 hover:text-neutral-700 transition-colors z-20 md:hidden"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M6 6l12 12M6 18L18 6" />
@@ -337,7 +337,7 @@ function HomeContent() {
         {/* Modal content */}
         <div ref={modalContentRef} className="p-4 md:p-8 h-full overflow-y-auto relative z-10 overscroll-contain">
           {modalContent === "about" && (
-            <div className="max-w-2xl mx-auto pt-16 md:pt-[8vh] lg:pt-16 pb-[50vh] md:pb-20 lg:pb-0 px-12 text-center" style={{ background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 100%)' }}>
+            <div className="max-w-2xl mx-auto mt-8 p-8 bg-white/80 rounded-lg shadow-sm text-center">
               <h2 className="font-[family-name:var(--font-megrim)] text-4xl mb-8 md:mb-[3vh] lg:mb-8">About Me</h2>
               <img
                 src="/assets/jen.jpg"
