@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import paintings from "@/data/paintings.json";
 import { getPosts, getPost } from "./lib/sanity";
 import BlogList from "./components/BlogList";
 import BlogPost from "./components/BlogPost";
 import ScrollReveal from "./components/ScrollReveal";
 
-export default function Home() {
+function HomeContent() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
   const [loaded, setLoaded] = useState(false);
@@ -17,9 +18,27 @@ export default function Home() {
   const [postsLoading, setPostsLoading] = useState(false);
   const modalContentRef = useRef(null);
 
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
   useEffect(() => {
     setLoaded(true);
   }, []);
+
+  // Handle URL-based post loading on mount
+  useEffect(() => {
+    const postSlug = searchParams.get("post");
+    if (postSlug && !selectedPost) {
+      // Open writings modal and load the post
+      setModalContent("writings");
+      setModalOpen(true);
+      getPost(postSlug).then((fullPost) => {
+        if (fullPost) {
+          setSelectedPost(fullPost);
+        }
+      });
+    }
+  }, [searchParams]);
 
   // Fetch blog posts when writings modal opens (always refetch for fresh data)
   useEffect(() => {
@@ -58,16 +77,28 @@ export default function Home() {
     setModalOpen(false);
     setModalContent(null);
     setSelectedPost(null);
+    // Clear URL if there's a post param
+    if (searchParams.get("post")) {
+      router.push("/", { scroll: false });
+    }
   };
 
   const handleSelectPost = async (post) => {
     // Fetch full post data including content
     const fullPost = await getPost(post.slug.current);
     setSelectedPost(fullPost);
+    // Update URL with post slug
+    router.push(`/?post=${post.slug.current}`, { scroll: false });
     // Scroll modal to top
     if (modalContentRef.current) {
       modalContentRef.current.scrollTop = 0;
     }
+  };
+
+  const handleBackToList = () => {
+    setSelectedPost(null);
+    // Clear URL param
+    router.push("/", { scroll: false });
   };
 
   return (
@@ -342,7 +373,7 @@ export default function Home() {
               {selectedPost ? (
                 <BlogPost
                   post={selectedPost}
-                  onBack={() => setSelectedPost(null)}
+                  onBack={handleBackToList}
                 />
               ) : (
                 <>
@@ -436,5 +467,13 @@ export default function Home() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="h-screen w-screen" />}>
+      <HomeContent />
+    </Suspense>
   );
 }

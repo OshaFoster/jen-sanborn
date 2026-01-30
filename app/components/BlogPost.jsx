@@ -120,7 +120,7 @@ export default function BlogPost({ post, onBack }) {
             // Image in framed container
             <figure>
               <div
-                className="w-[70%] min-w-[200px] overflow-hidden rounded-lg bg-neutral-100 cursor-pointer"
+                className="w-full max-w-[250px] md:max-w-[300px] lg:max-w-[380px] overflow-hidden rounded-lg bg-neutral-100 cursor-pointer"
                 onClick={() => setLightboxImage({ url: heroImageUrl, alt: heroImage.alt, caption: heroImage.caption })}
               >
                 <img
@@ -130,7 +130,7 @@ export default function BlogPost({ post, onBack }) {
                 />
               </div>
               {heroImage.caption && (
-                <figcaption className="text-sm text-neutral-500 mt-2 italic w-[70%] min-w-[200px]">
+                <figcaption className="text-sm text-neutral-500 mt-2 italic w-full max-w-[250px] md:max-w-[300px] lg:max-w-[380px]">
                   {heroImage.caption}
                 </figcaption>
               )}
@@ -172,7 +172,7 @@ export default function BlogPost({ post, onBack }) {
             <p className="text-xs text-neutral-500 mb-2">Share</p>
             <div className="flex gap-2">
               <a
-                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(typeof window !== 'undefined' ? window.location.origin : '')}&quote=${encodeURIComponent(post.title + ' - Jen Sanborn')}`}
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&quote=${encodeURIComponent(post.title + ' - Jen Sanborn')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 flex items-center justify-center rounded-full bg-neutral-100 text-neutral-600 hover:bg-[#1877F2] hover:text-white transition-colors"
@@ -182,7 +182,7 @@ export default function BlogPost({ post, onBack }) {
                 </svg>
               </a>
               <a
-                href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.origin : '')}&text=${encodeURIComponent(post.title + ' by Jen Sanborn')}`}
+                href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&text=${encodeURIComponent(post.title + ' by Jen Sanborn')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 flex items-center justify-center rounded-full bg-neutral-100 text-neutral-600 hover:bg-black hover:text-white transition-colors"
@@ -192,7 +192,7 @@ export default function BlogPost({ post, onBack }) {
                 </svg>
               </a>
               <a
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.origin : '')}`}
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 flex items-center justify-center rounded-full bg-neutral-100 text-neutral-600 hover:bg-[#0A66C2] hover:text-white transition-colors"
