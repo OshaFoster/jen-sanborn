@@ -31,8 +31,9 @@ export default function BlogPost({ post, onBack }) {
   const [lightboxImage, setLightboxImage] = useState(null);
   const [playVideo, setPlayVideo] = useState(false);
 
-  const date = post.publishedAt
-    ? new Date(post.publishedAt).toLocaleDateString("en-US", {
+  const dateValue = post.publishedAt || post._createdAt;
+  const date = dateValue
+    ? new Date(dateValue).toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
         day: "numeric",

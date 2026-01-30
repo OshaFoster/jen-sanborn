@@ -45,6 +45,7 @@ export async function getPost(slug) {
       _id,
       title,
       slug,
+      _createdAt,
       publishedAt,
       excerpt,
       mediaType,
