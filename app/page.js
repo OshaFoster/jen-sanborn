@@ -454,7 +454,7 @@ function HomeContent() {
               </button>
 
               {/* Painting */}
-              <div className="flex flex-col items-center gap-3 h-full justify-center">
+              <div className="flex flex-col items-center gap-3 justify-center bg-white/80 rounded-lg shadow-sm p-6">
                 <span className="font-[family-name:var(--font-megrim)] text-2xl text-neutral-700">{modalContent.painting.title}</span>
                 <div
                   style={{ aspectRatio: modalContent.painting.aspectRatio }}
