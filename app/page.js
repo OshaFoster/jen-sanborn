@@ -370,10 +370,38 @@ function HomeContent() {
 
               <div className="mt-6 md:mt-[4vh] lg:mt-12 pt-8 md:pt-[3vh] lg:pt-8 border-t border-[#e0e0e0]">
                 <h3 className="font-[family-name:var(--font-megrim)] text-2xl mb-4 md:mb-3 lg:mb-4">Connect</h3>
-                <div className="text-neutral-600 space-y-2">
-                  <p>
-                    <a href="mailto:Jen@sanbornstudio.com" className="text-[#AB622C] hover:text-[#a8854f] transition-colors">Jen@sanbornstudio.com</a>
-                  </p>
+                <div className="flex justify-center gap-4">
+                  <a
+                    href="https://www.instagram.com/jensanborn_artist"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#AB622C] hover:text-[#8a4e23] transition-colors"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <rect x="2" y="2" width="20" height="20" rx="5" />
+                      <circle cx="12" cy="12" r="4" />
+                      <circle cx="18" cy="6" r="1" fill="currentColor" stroke="none" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://jensanborn.substack.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#AB622C] hover:text-[#8a4e23] transition-colors"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M4 4h16M4 9h16M4 14v6l8-4.5L20 20v-6H4z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="mailto:Jen@sanbornstudio.com"
+                    className="text-[#AB622C] hover:text-[#8a4e23] transition-colors"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <rect x="2" y="4" width="20" height="16" rx="2" />
+                      <path d="M22 6l-10 7L2 6" />
+                    </svg>
+                  </a>
                 </div>
               </div>
             </div>
