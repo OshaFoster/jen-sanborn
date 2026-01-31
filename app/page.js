@@ -208,6 +208,16 @@ function HomeContent() {
             </svg>
           </a>
           <a
+            href="https://jensanborn.substack.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-neutral-400 hover:text-neutral-600 transition-colors"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M4 4h16M4 9h16M4 14v6l8-4.5L20 20v-6H4z" />
+            </svg>
+          </a>
+          <a
             href="mailto:Jen@sanbornstudio.com"
             className="text-neutral-400 hover:text-neutral-600 transition-colors"
           >
