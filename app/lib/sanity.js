@@ -21,6 +21,21 @@ export function urlFor(source) {
   return `https://cdn.sanity.io/images/${projectId}/${dataset}/${id}-${dimensions}.${format}`;
 }
 
+// Fetch all paintings (for gallery)
+export async function getPaintings() {
+  return client.fetch(`
+    *[_type == "painting"] | order(order asc) {
+      _id,
+      title,
+      "imageUrl": image.asset->url,
+      aspectRatio,
+      size,
+      medium,
+      sold
+    }
+  `);
+}
+
 // Fetch all blog posts (for list view)
 export async function getPosts() {
   return client.fetch(`

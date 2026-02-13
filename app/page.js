@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import paintings from "@/data/paintings.json";
-import { getPosts, getPost } from "./lib/sanity";
+import { getPosts, getPost, getPaintings } from "./lib/sanity";
 import BlogList from "./components/BlogList";
 import BlogPost from "./components/BlogPost";
 import ScrollReveal from "./components/ScrollReveal";
@@ -16,6 +15,7 @@ function HomeContent() {
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [postsLoading, setPostsLoading] = useState(false);
+  const [paintings, setPaintings] = useState([]);
   const modalContentRef = useRef(null);
 
   const searchParams = useSearchParams();
@@ -23,6 +23,7 @@ function HomeContent() {
 
   useEffect(() => {
     setLoaded(true);
+    getPaintings().then((data) => setPaintings(data || []));
   }, []);
 
   // Handle URL-based post loading on mount
@@ -273,7 +274,7 @@ function HomeContent() {
           <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 md:gap-8 relative z-10">
           {paintings.map((painting, index) => (
             <ScrollReveal
-              key={painting.id}
+              key={painting._id}
               delay={index < 8 ? index * 100 : 0}
               className="break-inside-avoid mb-8 md:mb-10"
             >
@@ -285,9 +286,9 @@ function HomeContent() {
                 style={{ aspectRatio: painting.aspectRatio }}
                 className="w-full bg-neutral-100 cursor-pointer relative group rounded overflow-hidden"
               >
-                {painting.image && (
+                {painting.imageUrl && (
                   <img
-                    src={painting.image}
+                    src={painting.imageUrl}
                     alt={painting.title}
                     className="absolute inset-0 w-full h-full object-cover"
                   />
@@ -433,7 +434,7 @@ function HomeContent() {
           )}
                     {modalContent?.type === "painting" && (
             <div
-              key={modalContent.painting.id}
+              key={modalContent.painting._id}
               className="flex items-center justify-center h-full relative animate-[fadeIn_0.3s_ease-out_forwards]"
               style={{ opacity: 0 }}
             >
@@ -441,7 +442,7 @@ function HomeContent() {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  const currentIndex = paintings.findIndex(p => p.id === modalContent.painting.id);
+                  const currentIndex = paintings.findIndex(p => p._id === modalContent.painting._id);
                   const prevIndex = currentIndex === 0 ? paintings.length - 1 : currentIndex - 1;
                   setModalContent({ type: "painting", painting: paintings[prevIndex] });
                 }}
@@ -469,9 +470,9 @@ function HomeContent() {
                     })()
                   }`}
                 >
-                  {modalContent.painting.image && (
+                  {modalContent.painting.imageUrl && (
                     <img
-                      src={modalContent.painting.image}
+                      src={modalContent.painting.imageUrl}
                       alt={modalContent.painting.title}
                       className="w-full h-full object-cover"
                     />
@@ -489,7 +490,7 @@ function HomeContent() {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  const currentIndex = paintings.findIndex(p => p.id === modalContent.painting.id);
+                  const currentIndex = paintings.findIndex(p => p._id === modalContent.painting._id);
                   const nextIndex = currentIndex === paintings.length - 1 ? 0 : currentIndex + 1;
                   setModalContent({ type: "painting", painting: paintings[nextIndex] });
                 }}
