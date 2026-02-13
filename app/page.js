@@ -270,7 +270,7 @@ function HomeContent() {
           />
         </svg>
         <div className="h-full overflow-y-auto p-6 pb-16 md:p-8 lg:p-16">
-          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 md:gap-8 relative z-10" style={{ columnFill: "auto" }}>
+          <div className="gallery-columns columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 md:gap-8 relative z-10">
           {paintings.map((painting, index) => (
             <ScrollReveal
               key={painting.id}
