@@ -102,7 +102,7 @@ function HomeContent() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen w-screen relative overflow-hidden">
+    <div className="flex flex-col md:flex-row h-dvh w-screen relative overflow-hidden">
       {/* Mobile header */}
       <div className="md:hidden flex justify-between items-start px-6 py-4 z-50">
         <div>
@@ -270,7 +270,7 @@ function HomeContent() {
             strokeLinecap="round"
           />
         </svg>
-        <div className="h-full overflow-y-auto p-6 md:p-8 lg:p-16">
+        <div className="h-full overflow-y-auto p-6 pb-16 md:p-8 lg:p-16">
           <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 md:gap-8 relative z-10">
           {paintings.map((painting, index) => (
             <ScrollReveal
@@ -345,7 +345,7 @@ function HomeContent() {
         )}
 
         {/* Modal content */}
-        <div ref={modalContentRef} className="p-4 md:p-8 h-full overflow-y-auto relative z-10 overscroll-contain">
+        <div ref={modalContentRef} className="p-4 pb-16 md:p-8 h-full overflow-y-auto relative z-10 overscroll-contain">
           {modalContent === "about" && (
             <div className="max-w-2xl mx-auto mt-8 p-8 bg-white/80 rounded-lg shadow-sm text-center">
               <h2 className="font-[family-name:var(--font-megrim)] text-4xl mb-8 md:mb-[3vh] lg:mb-8">About Me</h2>
@@ -510,7 +510,7 @@ function HomeContent() {
 
 export default function Home() {
   return (
-    <Suspense fallback={<div className="h-screen w-screen" />}>
+    <Suspense fallback={<div className="h-dvh w-screen" />}>
       <HomeContent />
     </Suspense>
   );
