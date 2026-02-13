@@ -109,7 +109,7 @@ function HomeContent() {
           <h1 className="font-[family-name:var(--font-megrim)] text-4xl tracking-wide">
             Jen Sanborn
           </h1>
-          <span className="text-xs tracking-[0.3em] uppercase text-[#c9a832]">
+          <span className="text-xs tracking-[0.3em] uppercase text-[#ae3e3f]">
             Artist
           </span>
         </div>
@@ -157,7 +157,7 @@ function HomeContent() {
         <h1 className="hidden md:block font-[family-name:var(--font-megrim)] text-4xl lg:text-6xl tracking-wide mb-2">
           Jen Sanborn
         </h1>
-        <span className="hidden md:block text-sm tracking-[0.4em] uppercase text-[#c9a832] mb-12">
+        <span className="hidden md:block text-sm tracking-[0.4em] uppercase text-[#ae3e3f] mb-12">
           Artist
         </span>
 
@@ -361,7 +361,7 @@ function HomeContent() {
                   natural world.
                 </p>
                 <p>
-                  Based in the American Southwest, I draw inspiration from the landscapes,
+                  Based in the American West, I draw inspiration from the landscapes,
                   wildlife, and quiet moments that surround me. My paintings invite viewers
                   to pause and find connection in these moments of Grace.
                 </p>
@@ -374,7 +374,7 @@ function HomeContent() {
                     href="https://www.instagram.com/jensanborn_artist"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#c9a832] hover:text-[#a8891a] transition-colors"
+                    className="text-[#ae3e3f] hover:text-[#8c2e2f] transition-colors"
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <rect x="2" y="2" width="20" height="20" rx="5" />
@@ -386,7 +386,7 @@ function HomeContent() {
                     href="https://jensanborn.substack.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#c9a832] hover:text-[#a8891a] transition-colors"
+                    className="text-[#ae3e3f] hover:text-[#8c2e2f] transition-colors"
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <path d="M4 4h16M4 9h16M4 14v6l8-4.5L20 20v-6H4z" />
@@ -394,7 +394,7 @@ function HomeContent() {
                   </a>
                   <a
                     href="mailto:Jen@sanbornstudio.com"
-                    className="text-[#c9a832] hover:text-[#a8891a] transition-colors"
+                    className="text-[#ae3e3f] hover:text-[#8c2e2f] transition-colors"
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <rect x="2" y="4" width="20" height="16" rx="2" />
