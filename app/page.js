@@ -109,7 +109,7 @@ function HomeContent() {
           <h1 className="font-[family-name:var(--font-megrim)] text-4xl tracking-wide">
             Jen Sanborn
           </h1>
-          <span className="text-xs tracking-[0.3em] uppercase text-[#968881]">
+          <span className="text-xs tracking-[0.3em] uppercase text-[#c9a832]">
             Artist
           </span>
         </div>
@@ -157,7 +157,7 @@ function HomeContent() {
         <h1 className="hidden md:block font-[family-name:var(--font-megrim)] text-4xl lg:text-6xl tracking-wide mb-2">
           Jen Sanborn
         </h1>
-        <span className="hidden md:block text-sm tracking-[0.4em] uppercase text-[#968881] mb-12">
+        <span className="hidden md:block text-sm tracking-[0.4em] uppercase text-[#c9a832] mb-12">
           Artist
         </span>
 
@@ -188,11 +188,10 @@ function HomeContent() {
           href="https://www.etsy.com/shop/sanbornstudio"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-8 px-4 py-2 text-sm tracking-widest uppercase border border-[#AB622C] text-[#AB622C] hover:bg-[#AB622C] hover:text-white transition-all w-fit"
+          className="mt-8 px-4 py-2 text-sm tracking-widest uppercase border border-[#8a4734] text-[#8a4734] hover:bg-[#8a4734] hover:text-white transition-all w-fit"
         >
           Shop
         </a>
-
         {/* Social icons */}
         <div className="mt-4 flex gap-3">
           <a
@@ -375,7 +374,7 @@ function HomeContent() {
                     href="https://www.instagram.com/jensanborn_artist"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#AB622C] hover:text-[#8a4e23] transition-colors"
+                    className="text-[#c9a832] hover:text-[#a8891a] transition-colors"
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <rect x="2" y="2" width="20" height="20" rx="5" />
@@ -387,7 +386,7 @@ function HomeContent() {
                     href="https://jensanborn.substack.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#AB622C] hover:text-[#8a4e23] transition-colors"
+                    className="text-[#c9a832] hover:text-[#a8891a] transition-colors"
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <path d="M4 4h16M4 9h16M4 14v6l8-4.5L20 20v-6H4z" />
@@ -395,7 +394,7 @@ function HomeContent() {
                   </a>
                   <a
                     href="mailto:Jen@sanbornstudio.com"
-                    className="text-[#AB622C] hover:text-[#8a4e23] transition-colors"
+                    className="text-[#c9a832] hover:text-[#a8891a] transition-colors"
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <rect x="2" y="4" width="20" height="16" rx="2" />
@@ -478,7 +477,7 @@ function HomeContent() {
                     />
                   )}
                 </div>
-                <div className="flex items-center gap-2 text-sm text-[#AB622C]">
+                <div className="flex items-center gap-2 text-sm text-[#8a4734]">
                   {modalContent.painting.medium && <span>{modalContent.painting.medium}</span>}
                   {modalContent.painting.medium && modalContent.painting.size && <span>·</span>}
                   {modalContent.painting.size && <span>{modalContent.painting.size}</span>}
