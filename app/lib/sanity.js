@@ -24,7 +24,7 @@ export function urlFor(source) {
 // Fetch all paintings (for gallery)
 export async function getPaintings() {
   return client.fetch(`
-    *[_type == "painting"] | order(order asc) {
+    *[_type == "painting"] | order(orderRank asc) {
       _id,
       title,
       "imageUrl": image.asset->url,
