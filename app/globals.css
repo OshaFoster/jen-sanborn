@@ -29,17 +29,6 @@ body {
   to { opacity: 1; }
 }
 
-/* Force columns to fill top-down on Safari */
-.gallery-columns {
-  column-fill: auto;
-}
-.gallery-columns::after {
-  content: "";
-  display: block;
-  height: 100vh;
-  break-inside: avoid;
-}
-
 /* Line clamp utility for blog excerpts */
 .line-clamp-2 {
   display: -webkit-box;
