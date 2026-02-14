@@ -283,7 +283,7 @@ function HomeContent() {
                   setModalContent({ type: "painting", painting });
                   setModalOpen(true);
                 }}
-                style={{ aspectRatio: painting.aspectRatio }}
+                style={{ aspectRatio: `${painting.imageWidth}/${painting.imageHeight}` }}
                 className="w-full bg-neutral-100 cursor-pointer relative group rounded overflow-hidden"
               >
                 {painting.imageUrl && (
@@ -457,7 +457,7 @@ function HomeContent() {
               <div className="flex flex-col items-center gap-3 justify-center bg-white/80 rounded-lg shadow-sm p-4 md:p-6 max-w-full">
                 <span className="font-[family-name:var(--font-megrim)] text-2xl text-neutral-700">{modalContent.painting.title}</span>
                 <div
-                  style={{ aspectRatio: modalContent.painting.aspectRatio }}
+                  style={{ aspectRatio: `${modalContent.painting.imageWidth}/${modalContent.painting.imageHeight}` }}
                   className={`bg-neutral-100 border border-neutral-200 rounded overflow-hidden max-w-[calc(100vw-2rem)] ${
                     (() => {
                       const size = modalContent.painting.size || '';

@@ -28,7 +28,8 @@ export async function getPaintings() {
       _id,
       title,
       "imageUrl": image.asset->url,
-      aspectRatio,
+      "imageWidth": image.asset->metadata.dimensions.width,
+      "imageHeight": image.asset->metadata.dimensions.height,
       size,
       medium,
       sold
