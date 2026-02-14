@@ -435,10 +435,10 @@ function HomeContent() {
                     {modalContent?.type === "painting" && (
             <div
               key={modalContent.painting._id}
-              className="flex items-center justify-center h-full relative animate-[fadeIn_0.3s_ease-out_forwards]"
+              className="flex flex-col md:flex-row items-center justify-center h-full relative animate-[fadeIn_0.3s_ease-out_forwards]"
               style={{ opacity: 0 }}
             >
-              {/* Previous arrow */}
+              {/* Previous arrow - hidden on mobile, shown on desktop */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -446,7 +446,7 @@ function HomeContent() {
                   const prevIndex = currentIndex === 0 ? paintings.length - 1 : currentIndex - 1;
                   setModalContent({ type: "painting", painting: paintings[prevIndex] });
                 }}
-                className="absolute left-4 p-2 text-neutral-600 hover:text-neutral-800 transition-colors"
+                className="hidden md:block absolute left-4 p-2 text-neutral-600 hover:text-neutral-800 transition-colors"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M15 18l-6-6 6-6" />
@@ -454,19 +454,19 @@ function HomeContent() {
               </button>
 
               {/* Painting */}
-              <div className="flex flex-col items-center gap-3 justify-center bg-white/80 rounded-lg shadow-sm p-6">
+              <div className="flex flex-col items-center gap-3 justify-center bg-white/80 rounded-lg shadow-sm p-4 md:p-6 max-w-full">
                 <span className="font-[family-name:var(--font-megrim)] text-2xl text-neutral-700">{modalContent.painting.title}</span>
                 <div
                   style={{ aspectRatio: modalContent.painting.aspectRatio }}
-                  className={`bg-neutral-100 border border-neutral-200 rounded overflow-hidden ${
+                  className={`bg-neutral-100 border border-neutral-200 rounded overflow-hidden max-w-[calc(100vw-2rem)] ${
                     (() => {
                       const size = modalContent.painting.size || '';
                       const match = size.match(/(\d+)"?\s*x\s*(\d+)/i);
                       if (match) {
                         const height = parseInt(match[2], 10);
-                        if (height >= 30) return 'h-[80vh]';
+                        if (height >= 30) return 'h-[60vh] md:h-[80vh]';
                       }
-                      return 'h-[60vh]';
+                      return 'h-[50vh] md:h-[60vh]';
                     })()
                   }`}
                 >
@@ -474,7 +474,7 @@ function HomeContent() {
                     <img
                       src={modalContent.painting.imageUrl}
                       alt={modalContent.painting.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
                   )}
                 </div>
@@ -486,7 +486,37 @@ function HomeContent() {
                 </div>
               </div>
 
-              {/* Next arrow */}
+              {/* Mobile arrows - below image */}
+              <div className="flex md:hidden gap-8 mt-2">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    const currentIndex = paintings.findIndex(p => p._id === modalContent.painting._id);
+                    const prevIndex = currentIndex === 0 ? paintings.length - 1 : currentIndex - 1;
+                    setModalContent({ type: "painting", painting: paintings[prevIndex] });
+                  }}
+                  className="p-2 text-neutral-600 hover:text-neutral-800 transition-colors"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M15 18l-6-6 6-6" />
+                  </svg>
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    const currentIndex = paintings.findIndex(p => p._id === modalContent.painting._id);
+                    const nextIndex = currentIndex === paintings.length - 1 ? 0 : currentIndex + 1;
+                    setModalContent({ type: "painting", painting: paintings[nextIndex] });
+                  }}
+                  className="p-2 text-neutral-600 hover:text-neutral-800 transition-colors"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Next arrow - hidden on mobile, shown on desktop */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -494,7 +524,7 @@ function HomeContent() {
                   const nextIndex = currentIndex === paintings.length - 1 ? 0 : currentIndex + 1;
                   setModalContent({ type: "painting", painting: paintings[nextIndex] });
                 }}
-                className="absolute right-4 p-2 text-neutral-600 hover:text-neutral-800 transition-colors"
+                className="hidden md:block absolute right-4 p-2 text-neutral-600 hover:text-neutral-800 transition-colors"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M9 18l6-6-6-6" />
