@@ -454,30 +454,15 @@ function HomeContent() {
               </button>
 
               {/* Painting */}
-              <div className="flex flex-col items-center gap-3 justify-center bg-white/80 rounded-lg shadow-sm p-4 md:p-6 max-w-full">
+              <div className="flex flex-col items-center gap-3 justify-center bg-white/80 rounded-lg shadow-sm p-4 md:p-6 max-w-[calc(100vw-2rem)] md:max-w-[calc(100%-6rem)]">
                 <span className="font-[family-name:var(--font-megrim)] text-2xl text-neutral-700">{modalContent.painting.title}</span>
-                <div
-                  style={{ aspectRatio: `${modalContent.painting.imageWidth}/${modalContent.painting.imageHeight}` }}
-                  className={`bg-neutral-100 border border-neutral-200 rounded overflow-hidden max-w-[calc(100vw-2rem)] ${
-                    (() => {
-                      const size = modalContent.painting.size || '';
-                      const match = size.match(/(\d+)"?\s*x\s*(\d+)/i);
-                      if (match) {
-                        const height = parseInt(match[2], 10);
-                        if (height >= 30) return 'h-[60vh] md:h-[80vh]';
-                      }
-                      return 'h-[50vh] md:h-[60vh]';
-                    })()
-                  }`}
-                >
-                  {modalContent.painting.imageUrl && (
-                    <img
-                      src={modalContent.painting.imageUrl}
-                      alt={modalContent.painting.title}
-                      className="w-full h-full object-contain"
-                    />
-                  )}
-                </div>
+                {modalContent.painting.imageUrl && (
+                  <img
+                    src={modalContent.painting.imageUrl}
+                    alt={modalContent.painting.title}
+                    className="max-h-[50vh] md:max-h-[70vh] max-w-full object-contain rounded border border-neutral-200"
+                  />
+                )}
                 <div className="flex items-center gap-2 text-sm text-[#8a4734]">
                   {modalContent.painting.medium && <span>{modalContent.painting.medium}</span>}
                   {modalContent.painting.medium && modalContent.painting.size && <span>·</span>}
