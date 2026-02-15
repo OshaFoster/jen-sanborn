@@ -26,6 +26,23 @@ function HomeContent() {
     getPaintings().then((data) => setPaintings(data || []));
   }, []);
 
+  // Keyboard arrow navigation for painting detail
+  useEffect(() => {
+    if (modalContent?.type !== "painting") return;
+    const handleKeyDown = (e) => {
+      const currentIndex = paintings.findIndex(p => p._id === modalContent.painting._id);
+      if (e.key === "ArrowRight") {
+        const nextIndex = currentIndex === paintings.length - 1 ? 0 : currentIndex + 1;
+        setModalContent({ type: "painting", painting: paintings[nextIndex] });
+      } else if (e.key === "ArrowLeft") {
+        const prevIndex = currentIndex === 0 ? paintings.length - 1 : currentIndex - 1;
+        setModalContent({ type: "painting", painting: paintings[prevIndex] });
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [modalContent, paintings]);
+
   // Handle URL-based post loading on mount
   useEffect(() => {
     const postSlug = searchParams.get("post");
