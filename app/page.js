@@ -437,6 +437,24 @@ function HomeContent() {
               key={modalContent.painting._id}
               className="flex flex-col md:flex-row items-center justify-center h-full relative animate-[fadeIn_0.3s_ease-out_forwards]"
               style={{ opacity: 0 }}
+              onTouchStart={(e) => {
+                e.currentTarget.dataset.touchX = e.touches[0].clientX;
+              }}
+              onTouchEnd={(e) => {
+                const startX = parseFloat(e.currentTarget.dataset.touchX);
+                const endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+                if (Math.abs(diff) > 50) {
+                  const currentIndex = paintings.findIndex(p => p._id === modalContent.painting._id);
+                  if (diff > 0) {
+                    const nextIndex = currentIndex === paintings.length - 1 ? 0 : currentIndex + 1;
+                    setModalContent({ type: "painting", painting: paintings[nextIndex] });
+                  } else {
+                    const prevIndex = currentIndex === 0 ? paintings.length - 1 : currentIndex - 1;
+                    setModalContent({ type: "painting", painting: paintings[prevIndex] });
+                  }
+                }
+              }}
             >
               {/* Previous arrow - hidden on mobile, shown on desktop */}
               <button
