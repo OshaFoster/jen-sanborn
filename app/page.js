@@ -157,7 +157,7 @@ function HomeContent() {
       >
         {/* Line drawing - sidebar portion (spiral) */}
         <svg
-          className="absolute inset-0 w-[103%] h-full pointer-events-none z-30 overflow-visible"
+          className="absolute inset-0 w-[103%] h-full pointer-events-none z-0 overflow-visible"
           viewBox="0 0 26 100"
           preserveAspectRatio="none"
         >
@@ -245,7 +245,7 @@ function HomeContent() {
           </a>
         </div>
 
-        <p className="mt-4 text-[10px] leading-tight text-neutral-500 max-w-[180px]">
+        <p className="mt-4 text-[10px] leading-tight text-neutral-500 max-w-[180px] relative z-40">
           All images and content on this site are &copy;{new Date().getFullYear()} Jen Sanborn. All rights reserved. No reproduction or unauthorized use is permitted without written consent.
         </p>
 
