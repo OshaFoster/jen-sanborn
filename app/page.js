@@ -157,7 +157,7 @@ function HomeContent() {
       >
         {/* Line drawing - sidebar portion (spiral) */}
         <svg
-          className="absolute inset-0 w-[103%] h-full pointer-events-none z-0 overflow-visible"
+          className="absolute inset-0 w-[103%] h-full pointer-events-none z-30 overflow-visible"
           viewBox="0 0 26 100"
           preserveAspectRatio="none"
         >
@@ -172,6 +172,7 @@ function HomeContent() {
             strokeLinecap="round"
           />
         </svg>
+        <div className="relative z-40">
         <h1 className="hidden md:block font-[family-name:var(--font-megrim)] text-4xl lg:text-6xl tracking-wide mb-2">
           Jen Sanborn
         </h1>
@@ -245,9 +246,10 @@ function HomeContent() {
           </a>
         </div>
 
-        <p className="mt-4 text-[10px] leading-tight text-neutral-500 max-w-[180px] relative z-40">
+        <p className="mt-4 text-[10px] leading-tight text-neutral-500 max-w-[180px]">
           All images and content on this site are &copy;{new Date().getFullYear()} Jen Sanborn. All rights reserved. No reproduction or unauthorized use is permitted without written consent.
         </p>
+        </div>
 
         {/* Bird illustration */}
         <img
