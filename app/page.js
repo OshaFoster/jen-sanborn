@@ -172,7 +172,7 @@ function HomeContent() {
             strokeLinecap="round"
           />
         </svg>
-        <div className="relative z-40">
+        <div className="relative z-40 flex flex-col">
         <h1 className="hidden md:block font-[family-name:var(--font-megrim)] text-4xl lg:text-6xl tracking-wide mb-2">
           Jen Sanborn
         </h1>
