@@ -29,6 +29,11 @@ body {
   to { opacity: 1; }
 }
 
+/* Prevent long-press image save on mobile */
+img {
+  -webkit-touch-callout: none;
+}
+
 /* Line clamp utility for blog excerpts */
 .line-clamp-2 {
   display: -webkit-box;

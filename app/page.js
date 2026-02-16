@@ -245,6 +245,9 @@ function HomeContent() {
           </a>
         </div>
 
+        <p className="mt-4 text-[10px] leading-tight text-neutral-500 max-w-[180px]">
+          All images and content on this site are &copy;{new Date().getFullYear()} Jen Sanborn. All rights reserved. No reproduction or unauthorized use is permitted without written consent.
+        </p>
 
         {/* Bird illustration */}
         <img
@@ -254,6 +257,7 @@ function HomeContent() {
             loaded ? 'opacity-80' : 'opacity-0'
           }`}
         />
+
 
         {/* Dimming overlay - on top of everything except line */}
         <div
@@ -307,7 +311,9 @@ function HomeContent() {
                   <img
                     src={painting.imageUrl}
                     alt={painting.title}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+                    draggable={false}
+                    onContextMenu={(e) => e.preventDefault()}
                   />
                 )}
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
@@ -495,7 +501,9 @@ function HomeContent() {
                   <img
                     src={modalContent.painting.imageUrl}
                     alt={modalContent.painting.title}
-                    className="max-h-[50vh] md:max-h-[70vh] max-w-full object-contain rounded border border-neutral-200"
+                    className="max-h-[50vh] md:max-h-[70vh] max-w-full object-contain rounded border border-neutral-200 select-none"
+                    draggable={false}
+                    onContextMenu={(e) => e.preventDefault()}
                   />
                 )}
                 <div className="flex items-center gap-2 text-sm text-[#8a4734]">
