@@ -50,6 +50,11 @@ export default function BlogPost({ post, onBack }) {
   const heroImageUrl = heroImage ? urlFor(heroImage) : null;
   const additionalImages = post.images?.slice(1) || [];
 
+  // Build shareable URL using /blog/slug for proper OG meta tags
+  const shareUrl = typeof window !== 'undefined'
+    ? `${window.location.origin}/blog/${post.slug?.current || ''}`
+    : '';
+
   return (
     <article className="max-w-[600px] bg-white/80 rounded-lg p-6 md:p-8 shadow-sm">
       {/* Back button */}
@@ -174,7 +179,7 @@ export default function BlogPost({ post, onBack }) {
             <p className="text-xs text-neutral-500 mb-2">Share</p>
             <div className="flex gap-2">
               <a
-                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&quote=${encodeURIComponent(post.title + ' - Jen Sanborn')}`}
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(post.title + ' - Jen Sanborn')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 flex items-center justify-center rounded-full bg-neutral-100 text-neutral-600 hover:bg-[#1877F2] hover:text-white transition-colors"
@@ -183,27 +188,26 @@ export default function BlogPost({ post, onBack }) {
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                 </svg>
               </a>
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(window.location.href);
-                  setCopied(true);
-                  setTimeout(() => setCopied(false), 2000);
-                }}
-                className={`w-8 h-8 flex items-center justify-center rounded-full transition-colors ${
-                  copied ? 'bg-green-500 text-white' : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-300'
-                }`}
-              >
-                {copied ? (
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M5 13l4 4L19 7" />
-                  </svg>
-                ) : (
+              <div className="relative">
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(shareUrl);
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 2500);
+                  }}
+                  className="w-8 h-8 flex items-center justify-center rounded-full bg-neutral-100 text-neutral-600 hover:bg-neutral-300 transition-colors"
+                >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <rect x="9" y="9" width="13" height="13" rx="2" />
                     <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
                   </svg>
+                </button>
+                {copied && (
+                  <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-neutral-600 bg-white border border-neutral-200 rounded-md px-3 py-1.5 shadow-md animate-[fadeInUp_0.2s_ease-out_forwards]" style={{ willChange: 'opacity' }}>
+                    Copied to clipboard
+                  </span>
                 )}
-              </button>
+              </div>
             </div>
           </div>
           <a

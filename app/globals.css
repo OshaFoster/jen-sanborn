@@ -29,6 +29,11 @@ body {
   to { opacity: 1; }
 }
 
+@keyframes fadeInUp {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* Prevent long-press image save on mobile */
 img {
   -webkit-touch-callout: none;
