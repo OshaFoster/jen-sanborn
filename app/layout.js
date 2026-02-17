@@ -8,6 +8,7 @@ const megrim = Megrim({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://jen-sanborn.vercel.app"),
   title: "Jen Sanborn",
   description: "Contemporary oil painter exploring the beauty of nature and wildlife",
   openGraph: {
