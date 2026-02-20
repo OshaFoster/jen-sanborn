@@ -379,7 +379,7 @@ function HomeContent() {
                 alt="Jen Sanborn"
                 className="w-64 h-44 md:w-72 md:h-48 lg:w-80 lg:h-56 rounded-2xl object-cover mx-auto my-8 md:my-[3vh] lg:my-12 border-[3px] border-[#d2dcff]"
               />
-              <div className="text-neutral-600 space-y-4 md:space-y-3 lg:space-y-4">
+              <div className="text-neutral-600 space-y-3">
                 <p>
                   I'm a contemporary oil painter whose work explores the delicate
                   relationship between nature and the human spirit. Working primarily in oils,
@@ -393,8 +393,19 @@ function HomeContent() {
                 </p>
               </div>
 
-              <div className="mt-6 md:mt-[4vh] lg:mt-12 pt-8 md:pt-[3vh] lg:pt-8 border-t border-[#e0e0e0]">
-                <h3 className="font-[family-name:var(--font-megrim)] text-2xl mb-4 md:mb-3 lg:mb-4">Connect</h3>
+              <div className="mt-4 pt-4 border-t border-[#e0e0e0]">
+                <h3 className="font-[family-name:var(--font-megrim)] text-2xl mb-1.5">Original Work</h3>
+                <p className="text-neutral-600 text-sm">
+                  Interested in an original piece?{" "}
+                  <a href="mailto:Jen@sanbornstudio.com" className="text-[#8a4734] hover:underline">
+                    Reach out
+                  </a>{" "}
+                  — I'd love to hear from you.
+                </p>
+              </div>
+
+              <div className="mt-4 pt-4 border-t border-[#e0e0e0]">
+                <h3 className="font-[family-name:var(--font-megrim)] text-2xl mb-2">Connect</h3>
                 <div className="flex justify-center gap-4">
                   <a
                     href="https://www.instagram.com/jensanborn_artist"
@@ -508,12 +519,20 @@ function HomeContent() {
                     onContextMenu={(e) => e.preventDefault()}
                   />
                 )}
-                <div className="flex items-center gap-2 text-sm text-[#8a4734]">
+                <div className="flex items-center gap-2 text-base text-[#8a4734]">
                   {modalContent.painting.medium && <span>{modalContent.painting.medium}</span>}
                   {modalContent.painting.medium && modalContent.painting.size && <span>·</span>}
                   {modalContent.painting.size && <span>{modalContent.painting.size}</span>}
-                  {modalContent.painting.sold && <span className="ml-2 uppercase tracking-wider text-xs">Sold</span>}
+                  {modalContent.painting.sold && <span className="ml-2 uppercase tracking-wider text-sm">Sold</span>}
                 </div>
+                {!modalContent.painting.sold && (
+                  <a
+                    href={`mailto:Jen@sanbornstudio.com?subject=Inquiry about "${modalContent.painting.title}"`}
+                    className="text-[10px] tracking-widest uppercase text-[#8a4734] underline underline-offset-2 hover:text-[#6b3628] transition-colors"
+                  >
+                    Inquire about this piece
+                  </a>
+                )}
               </div>
 
               {/* Mobile arrows - below image */}
