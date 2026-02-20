@@ -396,11 +396,7 @@ function HomeContent() {
               <div className="mt-4 pt-4 border-t border-[#e0e0e0]">
                 <h3 className="font-[family-name:var(--font-megrim)] text-2xl mb-1.5">Original Work</h3>
                 <p className="text-neutral-600 text-sm">
-                  Interested in an original piece?{" "}
-                  <a href="mailto:Jen@sanbornstudio.com" className="text-[#8a4734] hover:underline">
-                    Reach out
-                  </a>{" "}
-                  — I'd love to hear from you.
+                  Interested in an original piece? Reach out — I'd love to hear from you.
                 </p>
               </div>
 
