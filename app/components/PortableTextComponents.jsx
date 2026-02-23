@@ -125,4 +125,5 @@ export const portableTextComponents = {
     bullet: ({ children }) => <li className="leading-snug">{children}</li>,
     number: ({ children }) => <li className="leading-snug">{children}</li>,
   },
+  hardBreak: () => " ",
 };
